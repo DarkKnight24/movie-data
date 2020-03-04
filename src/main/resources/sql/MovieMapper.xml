@@ -1,0 +1,635 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.movie.moviedata.dao.MovieMapper">
+    <resultMap id="BaseResultMap" type="com.movie.moviedata.entity.Movie">
+        <!--@mbg.generated-->
+        <!--@Table movie-->
+        <id column="movie_id" jdbcType="BIGINT" property="movieId"/>
+        <result column="movie_cn_name" jdbcType="VARCHAR" property="movieCnName"/>
+        <result column="movie_fg_name" jdbcType="VARCHAR" property="movieFgName"/>
+        <result column="movie_actor" jdbcType="VARCHAR" property="movieActor"/>
+        <result column="movie_director" jdbcType="VARCHAR" property="movieDirector"/>
+        <result column="movie_detail" jdbcType="VARCHAR" property="movieDetail"/>
+        <result column="movie_duration" jdbcType="VARCHAR" property="movieDuration"/>
+        <result column="movie_type" jdbcType="BIGINT" property="movieType"/>
+        <result column="movie_score" jdbcType="FLOAT" property="movieScore"/>
+        <result column="movie_boxOffice" jdbcType="FLOAT" property="movieBoxoffice"/>
+        <result column="movie_commentCount" jdbcType="BIGINT" property="movieCommentcount"/>
+        <result column="movie_releaseDate" jdbcType="TIMESTAMP" property="movieReleasedate"/>
+        <result column="movie_country" jdbcType="INTEGER" property="movieCountry"/>
+        <result column="movie_picture" jdbcType="VARCHAR" property="moviePicture"/>
+        <result column="movie_state" jdbcType="TINYINT" property="movieState"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        movie_id, movie_cn_name, movie_fg_name, movie_actor, movie_director, movie_detail,
+        movie_duration, movie_type, movie_score, movie_boxOffice, movie_commentCount, movie_releaseDate,
+        movie_country, movie_picture, movie_state
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from movie
+        where movie_id = #{movieId,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        <!--@mbg.generated-->
+        delete from movie
+        where movie_id = #{movieId,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" keyColumn="movie_id" keyProperty="movieId" parameterType="com.movie.moviedata.entity.Movie"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into movie (movie_cn_name, movie_fg_name, movie_actor,
+        movie_director, movie_detail, movie_duration,
+        movie_type, movie_score, movie_boxOffice,
+        movie_commentCount, movie_releaseDate, movie_country,
+        movie_picture, movie_state)
+        values (#{movieCnName,jdbcType=VARCHAR}, #{movieFgName,jdbcType=VARCHAR}, #{movieActor,jdbcType=VARCHAR},
+        #{movieDirector,jdbcType=VARCHAR}, #{movieDetail,jdbcType=VARCHAR}, #{movieDuration,jdbcType=VARCHAR},
+        #{movieType,jdbcType=BIGINT}, #{movieScore,jdbcType=FLOAT}, #{movieBoxoffice,jdbcType=FLOAT},
+        #{movieCommentcount,jdbcType=BIGINT}, #{movieReleasedate,jdbcType=TIMESTAMP}, #{movieCountry,jdbcType=INTEGER},
+        #{moviePicture,jdbcType=VARCHAR}, #{movieState,jdbcType=TINYINT})
+    </insert>
+    <insert id="insertSelective" keyColumn="movie_id" keyProperty="movieId"
+            parameterType="com.movie.moviedata.entity.Movie" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into movie
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="movieCnName != null and movieCnName != ''">
+                movie_cn_name,
+            </if>
+            <if test="movieFgName != null and movieFgName != ''">
+                movie_fg_name,
+            </if>
+            <if test="movieActor != null and movieActor != ''">
+                movie_actor,
+            </if>
+            <if test="movieDirector != null and movieDirector != ''">
+                movie_director,
+            </if>
+            <if test="movieDetail != null and movieDetail != ''">
+                movie_detail,
+            </if>
+            <if test="movieDuration != null and movieDuration != ''">
+                movie_duration,
+            </if>
+            <if test="movieType != null">
+                movie_type,
+            </if>
+            <if test="movieScore != null">
+                movie_score,
+            </if>
+            <if test="movieBoxoffice != null">
+                movie_boxOffice,
+            </if>
+            <if test="movieCommentcount != null">
+                movie_commentCount,
+            </if>
+            <if test="movieReleasedate != null">
+                movie_releaseDate,
+            </if>
+            <if test="movieCountry != null">
+                movie_country,
+            </if>
+            <if test="moviePicture != null and moviePicture != ''">
+                movie_picture,
+            </if>
+            <if test="movieState != null">
+                movie_state,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="movieCnName != null and movieCnName != ''">
+                #{movieCnName,jdbcType=VARCHAR},
+            </if>
+            <if test="movieFgName != null and movieFgName != ''">
+                #{movieFgName,jdbcType=VARCHAR},
+            </if>
+            <if test="movieActor != null and movieActor != ''">
+                #{movieActor,jdbcType=VARCHAR},
+            </if>
+            <if test="movieDirector != null and movieDirector != ''">
+                #{movieDirector,jdbcType=VARCHAR},
+            </if>
+            <if test="movieDetail != null and movieDetail != ''">
+                #{movieDetail,jdbcType=VARCHAR},
+            </if>
+            <if test="movieDuration != null and movieDuration != ''">
+                #{movieDuration,jdbcType=VARCHAR},
+            </if>
+            <if test="movieType != null">
+                #{movieType,jdbcType=BIGINT},
+            </if>
+            <if test="movieScore != null">
+                #{movieScore,jdbcType=FLOAT},
+            </if>
+            <if test="movieBoxoffice != null">
+                #{movieBoxoffice,jdbcType=FLOAT},
+            </if>
+            <if test="movieCommentcount != null">
+                #{movieCommentcount,jdbcType=BIGINT},
+            </if>
+            <if test="movieReleasedate != null">
+                #{movieReleasedate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="movieCountry != null">
+                #{movieCountry,jdbcType=INTEGER},
+            </if>
+            <if test="moviePicture != null and moviePicture != ''">
+                #{moviePicture,jdbcType=VARCHAR},
+            </if>
+            <if test="movieState != null">
+                #{movieState,jdbcType=TINYINT},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.movie.moviedata.entity.Movie">
+        <!--@mbg.generated-->
+        update movie
+        <set>
+            <if test="movieCnName != null and movieCnName != ''">
+                movie_cn_name = #{movieCnName,jdbcType=VARCHAR},
+            </if>
+            <if test="movieFgName != null and movieFgName != ''">
+                movie_fg_name = #{movieFgName,jdbcType=VARCHAR},
+            </if>
+            <if test="movieActor != null and movieActor != ''">
+                movie_actor = #{movieActor,jdbcType=VARCHAR},
+            </if>
+            <if test="movieDirector != null and movieDirector != ''">
+                movie_director = #{movieDirector,jdbcType=VARCHAR},
+            </if>
+            <if test="movieDetail != null and movieDetail != ''">
+                movie_detail = #{movieDetail,jdbcType=VARCHAR},
+            </if>
+            <if test="movieDuration != null and movieDuration != ''">
+                movie_duration = #{movieDuration,jdbcType=VARCHAR},
+            </if>
+            <if test="movieType != null">
+                movie_type = #{movieType,jdbcType=BIGINT},
+            </if>
+            <if test="movieScore != null">
+                movie_score = #{movieScore,jdbcType=FLOAT},
+            </if>
+            <if test="movieBoxoffice != null">
+                movie_boxOffice = #{movieBoxoffice,jdbcType=FLOAT},
+            </if>
+            <if test="movieCommentcount != null">
+                movie_commentCount = #{movieCommentcount,jdbcType=BIGINT},
+            </if>
+            <if test="movieReleasedate != null">
+                movie_releaseDate = #{movieReleasedate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="movieCountry != null">
+                movie_country = #{movieCountry,jdbcType=INTEGER},
+            </if>
+            <if test="moviePicture != null and moviePicture != ''">
+                movie_picture = #{moviePicture,jdbcType=VARCHAR},
+            </if>
+            <if test="movieState != null">
+                movie_state = #{movieState,jdbcType=TINYINT},
+            </if>
+        </set>
+        where movie_id = #{movieId,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.movie.moviedata.entity.Movie">
+        <!--@mbg.generated-->
+        update movie
+        set movie_cn_name = #{movieCnName,jdbcType=VARCHAR},
+        movie_fg_name = #{movieFgName,jdbcType=VARCHAR},
+        movie_actor = #{movieActor,jdbcType=VARCHAR},
+        movie_director = #{movieDirector,jdbcType=VARCHAR},
+        movie_detail = #{movieDetail,jdbcType=VARCHAR},
+        movie_duration = #{movieDuration,jdbcType=VARCHAR},
+        movie_type = #{movieType,jdbcType=BIGINT},
+        movie_score = #{movieScore,jdbcType=FLOAT},
+        movie_boxOffice = #{movieBoxoffice,jdbcType=FLOAT},
+        movie_commentCount = #{movieCommentcount,jdbcType=BIGINT},
+        movie_releaseDate = #{movieReleasedate,jdbcType=TIMESTAMP},
+        movie_country = #{movieCountry,jdbcType=INTEGER},
+        movie_picture = #{moviePicture,jdbcType=VARCHAR},
+        movie_state = #{movieState,jdbcType=TINYINT}
+        where movie_id = #{movieId,jdbcType=BIGINT}
+    </update>
+    <update id="updateBatch" parameterType="java.util.List">
+        <!--@mbg.generated-->
+        update movie
+        <trim prefix="set" suffixOverrides=",">
+            <trim prefix="movie_cn_name = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when movie_id = #{item.movieId,jdbcType=BIGINT} then #{item.movieCnName,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="movie_fg_name = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when movie_id = #{item.movieId,jdbcType=BIGINT} then #{item.movieFgName,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="movie_actor = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when movie_id = #{item.movieId,jdbcType=BIGINT} then #{item.movieActor,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="movie_director = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when movie_id = #{item.movieId,jdbcType=BIGINT} then #{item.movieDirector,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="movie_detail = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when movie_id = #{item.movieId,jdbcType=BIGINT} then #{item.movieDetail,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="movie_duration = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when movie_id = #{item.movieId,jdbcType=BIGINT} then #{item.movieDuration,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="movie_type = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when movie_id = #{item.movieId,jdbcType=BIGINT} then #{item.movieType,jdbcType=BIGINT}
+                </foreach>
+            </trim>
+            <trim prefix="movie_score = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when movie_id = #{item.movieId,jdbcType=BIGINT} then #{item.movieScore,jdbcType=FLOAT}
+                </foreach>
+            </trim>
+            <trim prefix="movie_boxOffice = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when movie_id = #{item.movieId,jdbcType=BIGINT} then #{item.movieBoxoffice,jdbcType=FLOAT}
+                </foreach>
+            </trim>
+            <trim prefix="movie_commentCount = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when movie_id = #{item.movieId,jdbcType=BIGINT} then #{item.movieCommentcount,jdbcType=BIGINT}
+                </foreach>
+            </trim>
+            <trim prefix="movie_releaseDate = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when movie_id = #{item.movieId,jdbcType=BIGINT} then #{item.movieReleasedate,jdbcType=TIMESTAMP}
+                </foreach>
+            </trim>
+            <trim prefix="movie_country = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when movie_id = #{item.movieId,jdbcType=BIGINT} then #{item.movieCountry,jdbcType=INTEGER}
+                </foreach>
+            </trim>
+            <trim prefix="movie_picture = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when movie_id = #{item.movieId,jdbcType=BIGINT} then #{item.moviePicture,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="movie_state = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when movie_id = #{item.movieId,jdbcType=BIGINT} then #{item.movieState,jdbcType=TINYINT}
+                </foreach>
+            </trim>
+        </trim>
+        where movie_id in
+        <foreach close=")" collection="list" item="item" open="(" separator=", ">
+            #{item.movieId,jdbcType=BIGINT}
+        </foreach>
+    </update>
+    <update id="updateBatchSelective" parameterType="java.util.List">
+        <!--@mbg.generated-->
+        update movie
+        <trim prefix="set" suffixOverrides=",">
+            <trim prefix="movie_cn_name = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.movieCnName != null">
+                        when movie_id = #{item.movieId,jdbcType=BIGINT} then #{item.movieCnName,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="movie_fg_name = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.movieFgName != null">
+                        when movie_id = #{item.movieId,jdbcType=BIGINT} then #{item.movieFgName,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="movie_actor = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.movieActor != null">
+                        when movie_id = #{item.movieId,jdbcType=BIGINT} then #{item.movieActor,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="movie_director = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.movieDirector != null">
+                        when movie_id = #{item.movieId,jdbcType=BIGINT} then #{item.movieDirector,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="movie_detail = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.movieDetail != null">
+                        when movie_id = #{item.movieId,jdbcType=BIGINT} then #{item.movieDetail,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="movie_duration = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.movieDuration != null">
+                        when movie_id = #{item.movieId,jdbcType=BIGINT} then #{item.movieDuration,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="movie_type = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.movieType != null">
+                        when movie_id = #{item.movieId,jdbcType=BIGINT} then #{item.movieType,jdbcType=BIGINT}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="movie_score = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.movieScore != null">
+                        when movie_id = #{item.movieId,jdbcType=BIGINT} then #{item.movieScore,jdbcType=FLOAT}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="movie_boxOffice = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.movieBoxoffice != null">
+                        when movie_id = #{item.movieId,jdbcType=BIGINT} then #{item.movieBoxoffice,jdbcType=FLOAT}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="movie_commentCount = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.movieCommentcount != null">
+                        when movie_id = #{item.movieId,jdbcType=BIGINT} then #{item.movieCommentcount,jdbcType=BIGINT}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="movie_releaseDate = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.movieReleasedate != null">
+                        when movie_id = #{item.movieId,jdbcType=BIGINT} then #{item.movieReleasedate,jdbcType=TIMESTAMP}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="movie_country = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.movieCountry != null">
+                        when movie_id = #{item.movieId,jdbcType=BIGINT} then #{item.movieCountry,jdbcType=INTEGER}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="movie_picture = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.moviePicture != null">
+                        when movie_id = #{item.movieId,jdbcType=BIGINT} then #{item.moviePicture,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="movie_state = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.movieState != null">
+                        when movie_id = #{item.movieId,jdbcType=BIGINT} then #{item.movieState,jdbcType=TINYINT}
+                    </if>
+                </foreach>
+            </trim>
+        </trim>
+        where movie_id in
+        <foreach close=")" collection="list" item="item" open="(" separator=", ">
+            #{item.movieId,jdbcType=BIGINT}
+        </foreach>
+    </update>
+    <insert id="batchInsert" keyColumn="movie_id" keyProperty="movieId" parameterType="map" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into movie
+        (movie_cn_name, movie_fg_name, movie_actor, movie_director, movie_detail, movie_duration,
+        movie_type, movie_score, movie_boxOffice, movie_commentCount, movie_releaseDate,
+        movie_country, movie_picture, movie_state)
+        values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.movieCnName,jdbcType=VARCHAR}, #{item.movieFgName,jdbcType=VARCHAR},
+            #{item.movieActor,jdbcType=VARCHAR},
+            #{item.movieDirector,jdbcType=VARCHAR}, #{item.movieDetail,jdbcType=VARCHAR},
+            #{item.movieDuration,jdbcType=VARCHAR},
+            #{item.movieType,jdbcType=BIGINT}, #{item.movieScore,jdbcType=FLOAT}, #{item.movieBoxoffice,jdbcType=FLOAT},
+            #{item.movieCommentcount,jdbcType=BIGINT}, #{item.movieReleasedate,jdbcType=TIMESTAMP},
+            #{item.movieCountry,jdbcType=INTEGER}, #{item.moviePicture,jdbcType=VARCHAR},
+            #{item.movieState,jdbcType=TINYINT}
+            )
+        </foreach>
+    </insert>
+    <insert id="insertOrUpdate" keyColumn="movie_id" keyProperty="movieId"
+            parameterType="com.movie.moviedata.entity.Movie" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into movie
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="movieId != null">
+                movie_id,
+            </if>
+            movie_cn_name,
+            movie_fg_name,
+            movie_actor,
+            movie_director,
+            movie_detail,
+            movie_duration,
+            movie_type,
+            movie_score,
+            movie_boxOffice,
+            movie_commentCount,
+            movie_releaseDate,
+            movie_country,
+            movie_picture,
+            movie_state,
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="movieId != null">
+                #{movieId,jdbcType=BIGINT},
+            </if>
+            #{movieCnName,jdbcType=VARCHAR},
+            #{movieFgName,jdbcType=VARCHAR},
+            #{movieActor,jdbcType=VARCHAR},
+            #{movieDirector,jdbcType=VARCHAR},
+            #{movieDetail,jdbcType=VARCHAR},
+            #{movieDuration,jdbcType=VARCHAR},
+            #{movieType,jdbcType=BIGINT},
+            #{movieScore,jdbcType=FLOAT},
+            #{movieBoxoffice,jdbcType=FLOAT},
+            #{movieCommentcount,jdbcType=BIGINT},
+            #{movieReleasedate,jdbcType=TIMESTAMP},
+            #{movieCountry,jdbcType=INTEGER},
+            #{moviePicture,jdbcType=VARCHAR},
+            #{movieState,jdbcType=TINYINT},
+        </trim>
+        on duplicate key update
+        <trim suffixOverrides=",">
+            <if test="movieId != null">
+                movie_id = #{movieId,jdbcType=BIGINT},
+            </if>
+            movie_cn_name = #{movieCnName,jdbcType=VARCHAR},
+            movie_fg_name = #{movieFgName,jdbcType=VARCHAR},
+            movie_actor = #{movieActor,jdbcType=VARCHAR},
+            movie_director = #{movieDirector,jdbcType=VARCHAR},
+            movie_detail = #{movieDetail,jdbcType=VARCHAR},
+            movie_duration = #{movieDuration,jdbcType=VARCHAR},
+            movie_type = #{movieType,jdbcType=BIGINT},
+            movie_score = #{movieScore,jdbcType=FLOAT},
+            movie_boxOffice = #{movieBoxoffice,jdbcType=FLOAT},
+            movie_commentCount = #{movieCommentcount,jdbcType=BIGINT},
+            movie_releaseDate = #{movieReleasedate,jdbcType=TIMESTAMP},
+            movie_country = #{movieCountry,jdbcType=INTEGER},
+            movie_picture = #{moviePicture,jdbcType=VARCHAR},
+            movie_state = #{movieState,jdbcType=TINYINT},
+        </trim>
+    </insert>
+    <insert id="insertOrUpdateSelective" keyColumn="movie_id" keyProperty="movieId"
+            parameterType="com.movie.moviedata.entity.Movie" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into movie
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="movieId != null">
+                movie_id,
+            </if>
+            <if test="movieCnName != null">
+                movie_cn_name,
+            </if>
+            <if test="movieFgName != null">
+                movie_fg_name,
+            </if>
+            <if test="movieActor != null">
+                movie_actor,
+            </if>
+            <if test="movieDirector != null">
+                movie_director,
+            </if>
+            <if test="movieDetail != null">
+                movie_detail,
+            </if>
+            <if test="movieDuration != null">
+                movie_duration,
+            </if>
+            <if test="movieType != null">
+                movie_type,
+            </if>
+            <if test="movieScore != null">
+                movie_score,
+            </if>
+            <if test="movieBoxoffice != null">
+                movie_boxOffice,
+            </if>
+            <if test="movieCommentcount != null">
+                movie_commentCount,
+            </if>
+            <if test="movieReleasedate != null">
+                movie_releaseDate,
+            </if>
+            <if test="movieCountry != null">
+                movie_country,
+            </if>
+            <if test="moviePicture != null">
+                movie_picture,
+            </if>
+            <if test="movieState != null">
+                movie_state,
+            </if>
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="movieId != null">
+                #{movieId,jdbcType=BIGINT},
+            </if>
+            <if test="movieCnName != null">
+                #{movieCnName,jdbcType=VARCHAR},
+            </if>
+            <if test="movieFgName != null">
+                #{movieFgName,jdbcType=VARCHAR},
+            </if>
+            <if test="movieActor != null">
+                #{movieActor,jdbcType=VARCHAR},
+            </if>
+            <if test="movieDirector != null">
+                #{movieDirector,jdbcType=VARCHAR},
+            </if>
+            <if test="movieDetail != null">
+                #{movieDetail,jdbcType=VARCHAR},
+            </if>
+            <if test="movieDuration != null">
+                #{movieDuration,jdbcType=VARCHAR},
+            </if>
+            <if test="movieType != null">
+                #{movieType,jdbcType=BIGINT},
+            </if>
+            <if test="movieScore != null">
+                #{movieScore,jdbcType=FLOAT},
+            </if>
+            <if test="movieBoxoffice != null">
+                #{movieBoxoffice,jdbcType=FLOAT},
+            </if>
+            <if test="movieCommentcount != null">
+                #{movieCommentcount,jdbcType=BIGINT},
+            </if>
+            <if test="movieReleasedate != null">
+                #{movieReleasedate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="movieCountry != null">
+                #{movieCountry,jdbcType=INTEGER},
+            </if>
+            <if test="moviePicture != null">
+                #{moviePicture,jdbcType=VARCHAR},
+            </if>
+            <if test="movieState != null">
+                #{movieState,jdbcType=TINYINT},
+            </if>
+        </trim>
+        on duplicate key update
+        <trim suffixOverrides=",">
+            <if test="movieId != null">
+                movie_id = #{movieId,jdbcType=BIGINT},
+            </if>
+            <if test="movieCnName != null">
+                movie_cn_name = #{movieCnName,jdbcType=VARCHAR},
+            </if>
+            <if test="movieFgName != null">
+                movie_fg_name = #{movieFgName,jdbcType=VARCHAR},
+            </if>
+            <if test="movieActor != null">
+                movie_actor = #{movieActor,jdbcType=VARCHAR},
+            </if>
+            <if test="movieDirector != null">
+                movie_director = #{movieDirector,jdbcType=VARCHAR},
+            </if>
+            <if test="movieDetail != null">
+                movie_detail = #{movieDetail,jdbcType=VARCHAR},
+            </if>
+            <if test="movieDuration != null">
+                movie_duration = #{movieDuration,jdbcType=VARCHAR},
+            </if>
+            <if test="movieType != null">
+                movie_type = #{movieType,jdbcType=BIGINT},
+            </if>
+            <if test="movieScore != null">
+                movie_score = #{movieScore,jdbcType=FLOAT},
+            </if>
+            <if test="movieBoxoffice != null">
+                movie_boxOffice = #{movieBoxoffice,jdbcType=FLOAT},
+            </if>
+            <if test="movieCommentcount != null">
+                movie_commentCount = #{movieCommentcount,jdbcType=BIGINT},
+            </if>
+            <if test="movieReleasedate != null">
+                movie_releaseDate = #{movieReleasedate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="movieCountry != null">
+                movie_country = #{movieCountry,jdbcType=INTEGER},
+            </if>
+            <if test="moviePicture != null">
+                movie_picture = #{moviePicture,jdbcType=VARCHAR},
+            </if>
+            <if test="movieState != null">
+                movie_state = #{movieState,jdbcType=TINYINT},
+            </if>
+        </trim>
+    </insert>
+</mapper>
