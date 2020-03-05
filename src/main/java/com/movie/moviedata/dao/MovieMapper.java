@@ -1,10 +1,12 @@
 package com.movie.moviedata.dao;
 
 import com.movie.moviedata.entity.Movie;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
+@Mapper
 public interface MovieMapper {
     int deleteByPrimaryKey(Long movieId);
 

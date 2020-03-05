@@ -4,11 +4,13 @@ import com.movie.moviedata.dao.MovieMapper;
 import com.movie.moviedata.entity.Movie;
 import com.movie.moviedata.service.MovieService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
 
 @Service
+@Transactional
 public class MovieServiceImpl implements MovieService {
 
     @Resource

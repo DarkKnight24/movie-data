@@ -2,24 +2,28 @@ server:
   port: 8083
 spring:
   application:
-    name: UserBaseServer
-  datasource:
-    driver-class-name: com.mysql.jdbc.Driver
-    username: root
-    url: jdbc:mysql://47.94.157.37:3306/movie?serverTimeZone=UTC&characterEncoding=UTF-8
-    password: zy5201314.
+    name: MovieDataServer
+  cloud:
+    config:
+      uri: http://localhost:9999
+#  datasource:
+#    driver-class-name: com.mysql.jdbc.Driver
+#    username: root
+#    url: jdbc:mysql://47.94.157.37:3306/movie?serverTimeZone=UTC&characterEncoding=UTF-8
+#    password: zy5201314.
 
-eureka:
-  client:
-    service-url:
-      defaultZone: http://localhost:9999/eureka/
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone: http://localhost:9999/eureka/
 mybatis:
-  mapper-locations: classpath:sql/*Mapper.xml
-  type-aliases-package: com.movie.moviedaya.entity
-  configuration:
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-logging:
-  level:
-    com:
-      example:
-        mapper: debug
+  #  mapper-locations: classpath:sql/*Mapper.xml
+  type-aliases-package: com.movie.moviedata.entity
+#  configuration:
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#logging:
+#  level:
+#    com:
+#      example:
+#        mapper: debug
+

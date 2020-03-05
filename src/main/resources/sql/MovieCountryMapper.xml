@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.movie.moviedata.dao.MovieCountryMapper">
+  <resultMap id="BaseResultMap" type="com.movie.moviedata.entity.MovieCountry">
+    <!--@mbg.generated-->
+    <!--@Table movie_country-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="country_name" jdbcType="VARCHAR" property="countryName" />
+    <result column="delete_mark" jdbcType="BIT" property="deleteMark" />
+    <result column="creat_time" jdbcType="TIMESTAMP" property="creatTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, country_name, delete_mark, creat_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from movie_country
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from movie_country
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.movie.moviedata.entity.MovieCountry" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into movie_country (country_name, delete_mark, creat_time
+      )
+    values (#{countryName,jdbcType=VARCHAR}, #{deleteMark,jdbcType=BIT}, #{creatTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.movie.moviedata.entity.MovieCountry" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into movie_country
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="countryName != null and countryName != ''">
+        country_name,
+      </if>
+      <if test="deleteMark != null">
+        delete_mark,
+      </if>
+      <if test="creatTime != null">
+        creat_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="countryName != null and countryName != ''">
+        #{countryName,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteMark != null">
+        #{deleteMark,jdbcType=BIT},
+      </if>
+      <if test="creatTime != null">
+        #{creatTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.movie.moviedata.entity.MovieCountry">
+    <!--@mbg.generated-->
+    update movie_country
+    <set>
+      <if test="countryName != null and countryName != ''">
+        country_name = #{countryName,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteMark != null">
+        delete_mark = #{deleteMark,jdbcType=BIT},
+      </if>
+      <if test="creatTime != null">
+        creat_time = #{creatTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.movie.moviedata.entity.MovieCountry">
+    <!--@mbg.generated-->
+    update movie_country
+    set country_name = #{countryName,jdbcType=VARCHAR},
+      delete_mark = #{deleteMark,jdbcType=BIT},
+      creat_time = #{creatTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateBatch" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update movie_country
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="country_name = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.countryName,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="delete_mark = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.deleteMark,jdbcType=BIT}
+        </foreach>
+      </trim>
+      <trim prefix="creat_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.creatTime,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=INTEGER}
+    </foreach>
+  </update>
+  <update id="updateBatchSelective" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update movie_country
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="country_name = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.countryName != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.countryName,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="delete_mark = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.deleteMark != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.deleteMark,jdbcType=BIT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="creat_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.creatTime != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.creatTime,jdbcType=TIMESTAMP}
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=INTEGER}
+    </foreach>
+  </update>
+  <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into movie_country
+    (country_name, delete_mark, creat_time)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.countryName,jdbcType=VARCHAR}, #{item.deleteMark,jdbcType=BIT}, #{item.creatTime,jdbcType=TIMESTAMP}
+        )
+    </foreach>
+  </insert>
+  <insert id="insertOrUpdate" keyColumn="id" keyProperty="id" parameterType="com.movie.moviedata.entity.MovieCountry" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into movie_country
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      country_name,
+      delete_mark,
+      creat_time,
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      #{countryName,jdbcType=VARCHAR},
+      #{deleteMark,jdbcType=BIT},
+      #{creatTime,jdbcType=TIMESTAMP},
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=INTEGER},
+      </if>
+      country_name = #{countryName,jdbcType=VARCHAR},
+      delete_mark = #{deleteMark,jdbcType=BIT},
+      creat_time = #{creatTime,jdbcType=TIMESTAMP},
+    </trim>
+  </insert>
+  <insert id="insertOrUpdateSelective" keyColumn="id" keyProperty="id" parameterType="com.movie.moviedata.entity.MovieCountry" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into movie_country
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="countryName != null">
+        country_name,
+      </if>
+      <if test="deleteMark != null">
+        delete_mark,
+      </if>
+      <if test="creatTime != null">
+        creat_time,
+      </if>
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="countryName != null">
+        #{countryName,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteMark != null">
+        #{deleteMark,jdbcType=BIT},
+      </if>
+      <if test="creatTime != null">
+        #{creatTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=INTEGER},
+      </if>
+      <if test="countryName != null">
+        country_name = #{countryName,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteMark != null">
+        delete_mark = #{deleteMark,jdbcType=BIT},
+      </if>
+      <if test="creatTime != null">
+        creat_time = #{creatTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+</mapper>
