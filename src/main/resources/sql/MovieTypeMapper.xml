@@ -230,7 +230,7 @@
             </if>
         </trim>
     </insert>
-    <select id="selectAll" resultMap="BaseResultMap">
+    <select id="selectAll" resultType="com.movie.moviedata.entity.MovieType">
         SELECT
         <include refid="Base_Column_List"/>
         FROM movie_type WHERE delete_mark = FALSE

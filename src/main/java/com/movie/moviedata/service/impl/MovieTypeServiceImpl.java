@@ -73,6 +73,6 @@ public class MovieTypeServiceImpl implements MovieTypeService {
 
     @Override
     public List<MovieType> selectAll() {
-        return null;
+        return movieTypeMapper.selectAll();
     }
 }
