@@ -71,4 +71,8 @@ public class MovieCountryServiceImpl implements MovieCountryService {
         return movieCountryMapper.batchInsert(list);
     }
 
+    @Override
+    public List<MovieCountry> selectAll() {
+        return movieCountryMapper.selectAll();
+    }
 }

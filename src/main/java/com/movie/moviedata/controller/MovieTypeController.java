@@ -16,7 +16,7 @@ public class MovieTypeController {
     @Autowired
     private MovieTypeService movieTypeService;
 
-    @RequestMapping("type/getAll")
+    @RequestMapping("type/all")
     @ResponseBody
     public Object getMovieType() {
         return movieTypeService.selectAll();

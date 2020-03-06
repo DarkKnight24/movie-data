@@ -29,5 +29,11 @@ public interface MovieCountryService {
 
     int batchInsert(List<MovieCountry> list);
 
+    /**
+     * 获取所有电影地区
+     *
+     * @return
+     */
+    List<MovieCountry> selectAll();
 
 }
