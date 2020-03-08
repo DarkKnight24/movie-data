@@ -43,14 +43,12 @@
         <!--@mbg.generated-->
         insert into movie (movie_cn_name, movie_fg_name, movie_actor,
         movie_director, movie_detail, movie_duration,
-        movie_type, movie_score, movie_boxOffice,
-        movie_commentCount, movie_releaseDate, movie_country,
-        movie_picture, movie_state)
+        movie_type, movie_releaseDate, movie_country,
+        movie_picture)
         values (#{movieCnName,jdbcType=VARCHAR}, #{movieFgName,jdbcType=VARCHAR}, #{movieActor,jdbcType=VARCHAR},
         #{movieDirector,jdbcType=VARCHAR}, #{movieDetail,jdbcType=VARCHAR}, #{movieDuration,jdbcType=VARCHAR},
-        #{movieType,jdbcType=BIGINT}, #{movieScore,jdbcType=FLOAT}, #{movieBoxoffice,jdbcType=FLOAT},
-        #{movieCommentcount,jdbcType=BIGINT}, #{movieReleasedate,jdbcType=TIMESTAMP}, #{movieCountry,jdbcType=INTEGER},
-        #{moviePicture,jdbcType=VARCHAR}, #{movieState,jdbcType=TINYINT})
+        #{movieType,jdbcType=BIGINT}, #{movieReleasedate,jdbcType=TIMESTAMP}, #{movieCountry,jdbcType=INTEGER},
+        #{moviePicture,jdbcType=VARCHAR})
     </insert>
     <insert id="insertSelective" keyColumn="movie_id" keyProperty="movieId"
             parameterType="com.movie.moviedata.entity.Movie" useGeneratedKeys="true">
@@ -197,12 +195,25 @@
     <update id="updateByPrimaryKey" parameterType="com.movie.moviedata.entity.Movie">
         <!--@mbg.generated-->
         update movie
-        set movie_cn_name = #{movieCnName,jdbcType=VARCHAR},
-        movie_fg_name = #{movieFgName,jdbcType=VARCHAR},
-        movie_actor = #{movieActor,jdbcType=VARCHAR},
-        movie_director = #{movieDirector,jdbcType=VARCHAR},
-        movie_detail = #{movieDetail,jdbcType=VARCHAR},
-        movie_duration = #{movieDuration,jdbcType=VARCHAR},
+        set
+        <if test="movieCnName != null and movieCnName != ''">
+            movie_cn_name = #{movieCnName,jdbcType=VARCHAR},
+        </if>
+        <if test="movieFgName != null and movieFgName != ''">
+            movie_fg_name = #{movieFgName,jdbcType=VARCHAR},
+        </if>
+        <if test="movieActor != null and movieActor != ''">
+            movie_actor = #{movieActor,jdbcType=VARCHAR},
+        </if>
+        <if test="movieDirector != null and movieDirector != ''">
+            movie_director = #{movieDirector,jdbcType=VARCHAR},
+        </if>
+        <if test="movieDetail != null and movieDirector != ''">
+            movie_detail = #{movieDetail,jdbcType=VARCHAR},
+        </if>
+        <if test="movieDuration != null and movieDirector != ''">
+            movie_duration = #{movieDuration,jdbcType=VARCHAR},
+        </if>
         movie_type = #{movieType,jdbcType=BIGINT},
         movie_score = #{movieScore,jdbcType=FLOAT},
         movie_boxOffice = #{movieBoxoffice,jdbcType=FLOAT},
@@ -632,4 +643,9 @@
             </if>
         </trim>
     </insert>
+    <select id="selectAll" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"/>
+        FROM movie
+        WHERE movie_state = 1
+    </select>
 </mapper>

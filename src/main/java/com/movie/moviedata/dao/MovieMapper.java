@@ -29,4 +29,6 @@ public interface MovieMapper {
     int updateBatchSelective(List<Movie> list);
 
     int batchInsert(@Param("list") List<Movie> list);
+
+    List<Movie> selectAll();
 }

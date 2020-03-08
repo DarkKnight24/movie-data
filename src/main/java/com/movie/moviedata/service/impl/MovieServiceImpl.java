@@ -1,8 +1,16 @@
 package com.movie.moviedata.service.impl;
 
+import com.google.common.collect.Lists;
+import com.movie.base.utils.BeanUtil;
+import com.movie.file.utils.Utils;
 import com.movie.moviedata.dao.MovieMapper;
+import com.movie.moviedata.dto.MovieDetailDto;
+import com.movie.moviedata.dto.MovieDto;
 import com.movie.moviedata.entity.Movie;
+import com.movie.moviedata.service.MovieCountryService;
 import com.movie.moviedata.service.MovieService;
+import com.movie.moviedata.service.MovieTypeService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,6 +23,15 @@ public class MovieServiceImpl implements MovieService {
 
     @Resource
     private MovieMapper movieMapper;
+
+    @Autowired
+    private MovieTypeService movieTypeService;
+
+    @Autowired
+    private MovieCountryService movieCountryService;
+
+    @Autowired
+    private Utils utils;
 
     @Override
     public int deleteByPrimaryKey(Long movieId) {
@@ -42,12 +59,21 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
-    public Movie selectByPrimaryKey(Long movieId) {
-        return movieMapper.selectByPrimaryKey(movieId);
+    public MovieDetailDto selectByPrimaryKey(Long movieId) {
+        Movie movie = movieMapper.selectByPrimaryKey(movieId);
+        movie.setMoviePicture(utils.getFileUrl(movie.getMoviePicture()));
+        MovieDetailDto movieDetailDto = new MovieDetailDto();
+        BeanUtil.copyProperties(movie,movieDetailDto);
+        movieDetailDto.setTypeName(movieTypeService.selectByPrimaryKey(movieDetailDto.getMovieType()).getTypeName());
+        movieDetailDto.setCountryName(movieCountryService.selectByPrimaryKey(movieDetailDto.getMovieCountry()).getCountryName());
+        return movieDetailDto;
     }
 
     @Override
     public int updateByPrimaryKeySelective(Movie record) {
+        if(record.getMoviePicture()==null||record.getMoviePicture().contains(utils.fileServerPath)){
+            record.setMoviePicture(null);
+        }
         return movieMapper.updateByPrimaryKeySelective(record);
     }
 
@@ -71,4 +97,16 @@ public class MovieServiceImpl implements MovieService {
         return movieMapper.batchInsert(list);
     }
 
+    @Override
+    public List<MovieDto> selectAll() {
+        List<Movie> movies = movieMapper.selectAll();
+        List<MovieDto> movieDtos = Lists.newArrayList();
+        movies.forEach(p->{
+            MovieDto movieDto = new MovieDto();
+            BeanUtil.copyProperties(p,movieDto);
+            movieDto.setMoviePicture(utils.getFileUrl(movieDto.getMoviePicture()));
+            movieDtos.add(movieDto);
+        });
+        return movieDtos;
+    }
 }

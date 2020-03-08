@@ -1,5 +1,6 @@
 package com.movie.moviedata.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import java.util.Date;
@@ -64,6 +65,7 @@ public class Movie {
     /**
      * 上映时间
      */
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date movieReleasedate;
 
     /**

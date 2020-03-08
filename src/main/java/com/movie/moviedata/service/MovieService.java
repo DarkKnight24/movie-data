@@ -1,5 +1,7 @@
 package com.movie.moviedata.service;
 
+import com.movie.moviedata.dto.MovieDetailDto;
+import com.movie.moviedata.dto.MovieDto;
 import com.movie.moviedata.entity.Movie;
 
 import java.util.List;
@@ -17,7 +19,7 @@ public interface MovieService {
 
     int insertSelective(Movie record);
 
-    Movie selectByPrimaryKey(Long movieId);
+    MovieDetailDto selectByPrimaryKey(Long movieId);
 
     int updateByPrimaryKeySelective(Movie record);
 
@@ -29,4 +31,5 @@ public interface MovieService {
 
     int batchInsert(List<Movie> list);
 
+    List<MovieDto> selectAll();
 }
