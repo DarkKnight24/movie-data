@@ -15,23 +15,10 @@ import java.io.IOException;
 @CrossOrigin
 public class MovieController {
 
-    @Autowired
-    private Utils utils;
+
     @Autowired
     private MovieService movieService;
 
-    @ResponseBody
-    @PostMapping("file-upload")
-    public Object fileUpload(@RequestParam(value = "file") MultipartFile file){
-        try {
-            byte[] bytes = file.getBytes();
-            String fileName = utils.upLoadFile(bytes, file.getOriginalFilename());
-            return fileName;
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return false;
-    }
 
     @ResponseBody
     @PostMapping("add-movie")
