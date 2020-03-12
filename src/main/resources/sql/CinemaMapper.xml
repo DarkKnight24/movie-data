@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.movie.moviedata.dao.CinemaMapper">
+  <resultMap id="BaseResultMap" type="com.movie.moviedata.entity.Cinema">
+    <!--@mbg.generated-->
+    <!--@Table cinema-->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="cinema_name" jdbcType="VARCHAR" property="cinemaName" />
+    <result column="cinema_type" jdbcType="BIGINT" property="cinemaType" />
+    <result column="cinema_address" jdbcType="VARCHAR" property="cinemaAddress" />
+    <result column="belong_area" jdbcType="BIGINT" property="belongArea" />
+    <result column="delete_mark" jdbcType="BIT" property="deleteMark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, cinema_name, cinema_type, cinema_address, belong_area, delete_mark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from cinema
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from cinema
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.movie.moviedata.entity.Cinema">
+    <!--@mbg.generated-->
+    insert into cinema (id, cinema_name, cinema_type, 
+      cinema_address, belong_area, delete_mark
+      )
+    values (#{id,jdbcType=BIGINT}, #{cinemaName,jdbcType=VARCHAR}, #{cinemaType,jdbcType=BIGINT}, 
+      #{cinemaAddress,jdbcType=VARCHAR}, #{belongArea,jdbcType=BIGINT}, #{deleteMark,jdbcType=BIT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.movie.moviedata.entity.Cinema">
+    <!--@mbg.generated-->
+    insert into cinema
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="cinemaName != null and cinemaName != ''">
+        cinema_name,
+      </if>
+      <if test="cinemaType != null">
+        cinema_type,
+      </if>
+      <if test="cinemaAddress != null and cinemaAddress != ''">
+        cinema_address,
+      </if>
+      <if test="belongArea != null">
+        belong_area,
+      </if>
+      <if test="deleteMark != null">
+        delete_mark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="cinemaName != null and cinemaName != ''">
+        #{cinemaName,jdbcType=VARCHAR},
+      </if>
+      <if test="cinemaType != null">
+        #{cinemaType,jdbcType=BIGINT},
+      </if>
+      <if test="cinemaAddress != null and cinemaAddress != ''">
+        #{cinemaAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="belongArea != null">
+        #{belongArea,jdbcType=BIGINT},
+      </if>
+      <if test="deleteMark != null">
+        #{deleteMark,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.movie.moviedata.entity.Cinema">
+    <!--@mbg.generated-->
+    update cinema
+    <set>
+      <if test="cinemaName != null and cinemaName != ''">
+        cinema_name = #{cinemaName,jdbcType=VARCHAR},
+      </if>
+      <if test="cinemaType != null">
+        cinema_type = #{cinemaType,jdbcType=BIGINT},
+      </if>
+      <if test="cinemaAddress != null and cinemaAddress != ''">
+        cinema_address = #{cinemaAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="belongArea != null">
+        belong_area = #{belongArea,jdbcType=BIGINT},
+      </if>
+      <if test="deleteMark != null">
+        delete_mark = #{deleteMark,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.movie.moviedata.entity.Cinema">
+    <!--@mbg.generated-->
+    update cinema
+    set cinema_name = #{cinemaName,jdbcType=VARCHAR},
+      cinema_type = #{cinemaType,jdbcType=BIGINT},
+      cinema_address = #{cinemaAddress,jdbcType=VARCHAR},
+      belong_area = #{belongArea,jdbcType=BIGINT},
+      delete_mark = #{deleteMark,jdbcType=BIT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateBatch" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update cinema
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="cinema_name = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.cinemaName,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="cinema_type = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.cinemaType,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="cinema_address = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.cinemaAddress,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="belong_area = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.belongArea,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="delete_mark = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.deleteMark,jdbcType=BIT}
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=BIGINT}
+    </foreach>
+  </update>
+  <update id="updateBatchSelective" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update cinema
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="cinema_name = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.cinemaName != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.cinemaName,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="cinema_type = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.cinemaType != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.cinemaType,jdbcType=BIGINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="cinema_address = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.cinemaAddress != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.cinemaAddress,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="belong_area = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.belongArea != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.belongArea,jdbcType=BIGINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="delete_mark = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.deleteMark != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.deleteMark,jdbcType=BIT}
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=BIGINT}
+    </foreach>
+  </update>
+  <insert id="batchInsert" parameterType="map">
+    <!--@mbg.generated-->
+    insert into cinema
+    (id, cinema_name, cinema_type, cinema_address, belong_area, delete_mark)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.id,jdbcType=BIGINT}, #{item.cinemaName,jdbcType=VARCHAR}, #{item.cinemaType,jdbcType=BIGINT}, 
+        #{item.cinemaAddress,jdbcType=VARCHAR}, #{item.belongArea,jdbcType=BIGINT}, #{item.deleteMark,jdbcType=BIT}
+        )
+    </foreach>
+  </insert>
+  <insert id="insertOrUpdate" parameterType="com.movie.moviedata.entity.Cinema">
+    <!--@mbg.generated-->
+    insert into cinema
+    (id, cinema_name, cinema_type, cinema_address, belong_area, delete_mark)
+    values
+    (#{id,jdbcType=BIGINT}, #{cinemaName,jdbcType=VARCHAR}, #{cinemaType,jdbcType=BIGINT}, 
+      #{cinemaAddress,jdbcType=VARCHAR}, #{belongArea,jdbcType=BIGINT}, #{deleteMark,jdbcType=BIT}
+      )
+    on duplicate key update 
+    id = #{id,jdbcType=BIGINT}, 
+    cinema_name = #{cinemaName,jdbcType=VARCHAR}, 
+    cinema_type = #{cinemaType,jdbcType=BIGINT}, 
+    cinema_address = #{cinemaAddress,jdbcType=VARCHAR}, 
+    belong_area = #{belongArea,jdbcType=BIGINT}, 
+    delete_mark = #{deleteMark,jdbcType=BIT}
+  </insert>
+  <insert id="insertOrUpdateSelective" parameterType="com.movie.moviedata.entity.Cinema">
+    <!--@mbg.generated-->
+    insert into cinema
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="cinemaName != null">
+        cinema_name,
+      </if>
+      <if test="cinemaType != null">
+        cinema_type,
+      </if>
+      <if test="cinemaAddress != null">
+        cinema_address,
+      </if>
+      <if test="belongArea != null">
+        belong_area,
+      </if>
+      <if test="deleteMark != null">
+        delete_mark,
+      </if>
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="cinemaName != null">
+        #{cinemaName,jdbcType=VARCHAR},
+      </if>
+      <if test="cinemaType != null">
+        #{cinemaType,jdbcType=BIGINT},
+      </if>
+      <if test="cinemaAddress != null">
+        #{cinemaAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="belongArea != null">
+        #{belongArea,jdbcType=BIGINT},
+      </if>
+      <if test="deleteMark != null">
+        #{deleteMark,jdbcType=BIT},
+      </if>
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=BIGINT},
+      </if>
+      <if test="cinemaName != null">
+        cinema_name = #{cinemaName,jdbcType=VARCHAR},
+      </if>
+      <if test="cinemaType != null">
+        cinema_type = #{cinemaType,jdbcType=BIGINT},
+      </if>
+      <if test="cinemaAddress != null">
+        cinema_address = #{cinemaAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="belongArea != null">
+        belong_area = #{belongArea,jdbcType=BIGINT},
+      </if>
+      <if test="deleteMark != null">
+        delete_mark = #{deleteMark,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

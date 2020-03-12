@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.movie.moviedata.dao.AreaTypeMapper">
+  <resultMap id="BaseResultMap" type="com.movie.moviedata.entity.AreaType">
+    <!--@mbg.generated-->
+    <!--@Table area_type-->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="area_type" jdbcType="VARCHAR" property="areaType" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, area_type
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from area_type
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from area_type
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.movie.moviedata.entity.AreaType">
+    <!--@mbg.generated-->
+    insert into area_type (id, area_type)
+    values (#{id,jdbcType=BIGINT}, #{areaType,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.movie.moviedata.entity.AreaType">
+    <!--@mbg.generated-->
+    insert into area_type
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="areaType != null and areaType != ''">
+        area_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="areaType != null and areaType != ''">
+        #{areaType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.movie.moviedata.entity.AreaType">
+    <!--@mbg.generated-->
+    update area_type
+    <set>
+      <if test="areaType != null and areaType != ''">
+        area_type = #{areaType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.movie.moviedata.entity.AreaType">
+    <!--@mbg.generated-->
+    update area_type
+    set area_type = #{areaType,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateBatch" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update area_type
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="area_type = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.areaType,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=BIGINT}
+    </foreach>
+  </update>
+  <update id="updateBatchSelective" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update area_type
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="area_type = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.areaType != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.areaType,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=BIGINT}
+    </foreach>
+  </update>
+  <insert id="batchInsert" parameterType="map">
+    <!--@mbg.generated-->
+    insert into area_type
+    (id, area_type)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.id,jdbcType=BIGINT}, #{item.areaType,jdbcType=VARCHAR})
+    </foreach>
+  </insert>
+  <insert id="insertOrUpdate" parameterType="com.movie.moviedata.entity.AreaType">
+    <!--@mbg.generated-->
+    insert into area_type
+    (id, area_type)
+    values
+    (#{id,jdbcType=BIGINT}, #{areaType,jdbcType=VARCHAR})
+    on duplicate key update 
+    id = #{id,jdbcType=BIGINT}, 
+    area_type = #{areaType,jdbcType=VARCHAR}
+  </insert>
+  <insert id="insertOrUpdateSelective" parameterType="com.movie.moviedata.entity.AreaType">
+    <!--@mbg.generated-->
+    insert into area_type
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="areaType != null">
+        area_type,
+      </if>
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="areaType != null">
+        #{areaType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=BIGINT},
+      </if>
+      <if test="areaType != null">
+        area_type = #{areaType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>
