@@ -67,4 +67,8 @@ public class CinemaTypeServiceImpl implements CinemaTypeService{
         return cinemaTypeMapper.batchInsert(list);
     }
 
+    @Override
+    public List<CinemaType> getAll() {
+        return cinemaTypeMapper.getAll();
+    }
 }

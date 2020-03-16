@@ -27,4 +27,5 @@ public interface CinemaService{
 
     int batchInsert(List<Cinema> list);
 
+
 }

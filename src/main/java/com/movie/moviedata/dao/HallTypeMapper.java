@@ -28,4 +28,6 @@ public interface HallTypeMapper {
     int updateBatchSelective(List<HallType> list);
 
     int batchInsert(@Param("list") List<HallType> list);
+
+    List<HallType> getAll();
 }

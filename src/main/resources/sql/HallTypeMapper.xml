@@ -226,4 +226,9 @@
       </if>
     </trim>
   </insert>
+    <select id="getAll" resultMap="BaseResultMap">
+      SELECT hall_id,hall_name
+      FROM hall_type
+      WHERE delete_mark=false
+    </select>
 </mapper>

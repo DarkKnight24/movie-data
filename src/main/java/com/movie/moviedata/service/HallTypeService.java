@@ -27,4 +27,5 @@ public interface HallTypeService{
 
     int batchInsert(List<HallType> list);
 
+    List<HallType> getAll();
 }

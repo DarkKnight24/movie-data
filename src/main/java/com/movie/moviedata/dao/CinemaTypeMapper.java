@@ -28,4 +28,6 @@ public interface CinemaTypeMapper {
     int updateBatchSelective(List<CinemaType> list);
 
     int batchInsert(@Param("list") List<CinemaType> list);
+
+    List<CinemaType> getAll();
 }

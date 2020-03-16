@@ -67,4 +67,8 @@ public class HallTypeServiceImpl implements HallTypeService{
         return hallTypeMapper.batchInsert(list);
     }
 
+    @Override
+    public List<HallType> getAll() {
+        return hallTypeMapper.getAll();
+    }
 }

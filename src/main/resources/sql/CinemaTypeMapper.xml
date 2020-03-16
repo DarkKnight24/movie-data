@@ -226,4 +226,7 @@
       </if>
     </trim>
   </insert>
+    <select id="getAll" resultMap="BaseResultMap">
+      SELECT cinema_id,cinema_type FROM cinema_type WHERE delete_mark=false
+    </select>
 </mapper>
