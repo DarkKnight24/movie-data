@@ -1,8 +1,10 @@
 package com.movie.moviedata.service;
 
+import com.movie.base.utils.Page;
 import com.movie.moviedata.dto.MovieDetailDto;
 import com.movie.moviedata.dto.MovieDto;
 import com.movie.moviedata.entity.Movie;
+import com.movie.moviedata.param.MovieSelectParam;
 
 import java.util.List;
 
@@ -32,4 +34,6 @@ public interface MovieService {
     int batchInsert(List<Movie> list);
 
     List<MovieDto> selectAll();
+
+    Page selectByParam(MovieSelectParam param, Page page);
 }

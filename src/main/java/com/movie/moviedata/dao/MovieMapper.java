@@ -1,6 +1,8 @@
 package com.movie.moviedata.dao;
 
+import com.movie.moviedata.dto.MovieDto;
 import com.movie.moviedata.entity.Movie;
+import com.movie.moviedata.param.MovieSelectParam;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -31,4 +33,6 @@ public interface MovieMapper {
     int batchInsert(@Param("list") List<Movie> list);
 
     List<Movie> selectAll();
+
+    List<MovieDto> selectByParam(@Param("param") MovieSelectParam param);
 }

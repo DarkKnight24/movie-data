@@ -81,5 +81,5 @@ public class Movie {
     /**
      * 电影状态 默认1 1：在线 0：下架
      */
-    private Byte movieState;
+    private Integer movieState;
 }

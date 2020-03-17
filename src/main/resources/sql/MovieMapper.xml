@@ -26,6 +26,31 @@
         movie_duration, movie_type, movie_score, movie_boxOffice, movie_commentCount, movie_releaseDate,
         movie_country, movie_picture, movie_state
     </sql>
+    <sql id="BaseDto">
+        movie_id AS movieId,
+        movie_cn_name AS movieCnName,
+        movie_picture AS moviePicture,
+        movie_score AS movieScore
+    </sql>
+    <sql id="BaseDetailDto">
+        movie_id AS movieId,
+        movie_cn_name AS movieCnName,
+        movie_fg_name AS movieFgName,
+        movie_picture AS moviePicture,
+        movie_score AS movieScore,
+        movie_actor AS movieActor,
+        movie_director AS movieDirector,
+        movie_detail AS movieDetail,
+        movie_duration AS movieDuration,
+        movie_type AS movieType,
+        movie_boxOffice AS movieBoxoffice,
+        movie_commentCount AS movieCommentCount,
+        movie_releaseDate AS movieReleasedate,
+        movie_country AS movieCountry,
+        movie_state AS movieState,
+        type_name typeName,
+        country_name countryName
+    </sql>
     <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
         <!--@mbg.generated-->
         select
@@ -644,8 +669,34 @@
         </trim>
     </insert>
     <select id="selectAll" resultMap="BaseResultMap">
-        SELECT <include refid="Base_Column_List"/>
+        SELECT
+        <include refid="Base_Column_List"/>
         FROM movie
         WHERE movie_state = 1
+    </select>
+    <select id="selectByParam" resultType="com.movie.moviedata.dto.MovieDto">
+        SELECT
+        <include refid="BaseDto"/>
+        FROM movie a
+        LEFT JOIN movie_type b ON a.movie_type = b.id
+        LEFT JOIN movie_country c ON a.movie_country = c.id
+        <where>
+            <if test="param.movieCountry!=null and param.movieCountry!=0">
+                and a.movie_country = #{param.movieCountry}
+            </if>
+            <if test="param.movieState != null">
+                and a.movie_state = #{param.movieState}
+            </if>
+            <if test="param.movieType != null">
+                and a.movie_type = #{param.movieType}
+            </if>
+            <if test="param.releaseTime != null and param.releaseTime!=''">
+                and YEAR(a.movie_releaseDate) = #{param.releaseTime}
+            </if>
+            <if test="param.orderBy != null and param.orderBy != ''">
+                ORDER BY #{param.orderBy}
+            </if>
+
+        </where>
     </select>
 </mapper>

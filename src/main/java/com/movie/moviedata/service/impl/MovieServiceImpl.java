@@ -1,12 +1,16 @@
 package com.movie.moviedata.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.google.common.collect.Lists;
 import com.movie.base.utils.BeanUtil;
+import com.movie.base.utils.Page;
 import com.movie.file.utils.Utils;
 import com.movie.moviedata.dao.MovieMapper;
 import com.movie.moviedata.dto.MovieDetailDto;
 import com.movie.moviedata.dto.MovieDto;
 import com.movie.moviedata.entity.Movie;
+import com.movie.moviedata.param.MovieSelectParam;
 import com.movie.moviedata.service.MovieCountryService;
 import com.movie.moviedata.service.MovieService;
 import com.movie.moviedata.service.MovieTypeService;
@@ -63,7 +67,7 @@ public class MovieServiceImpl implements MovieService {
         Movie movie = movieMapper.selectByPrimaryKey(movieId);
         movie.setMoviePicture(utils.getFileUrl(movie.getMoviePicture()));
         MovieDetailDto movieDetailDto = new MovieDetailDto();
-        BeanUtil.copyProperties(movie,movieDetailDto);
+        BeanUtil.copyProperties(movie, movieDetailDto);
         movieDetailDto.setTypeName(movieTypeService.selectByPrimaryKey(movieDetailDto.getMovieType()).getTypeName());
         movieDetailDto.setCountryName(movieCountryService.selectByPrimaryKey(movieDetailDto.getMovieCountry()).getCountryName());
         return movieDetailDto;
@@ -71,7 +75,7 @@ public class MovieServiceImpl implements MovieService {
 
     @Override
     public int updateByPrimaryKeySelective(Movie record) {
-        if(record.getMoviePicture()==null||record.getMoviePicture().contains(utils.fileServerPath)){
+        if (record.getMoviePicture() == null || record.getMoviePicture().contains(utils.fileServerPath)) {
             record.setMoviePicture(null);
         }
         return movieMapper.updateByPrimaryKeySelective(record);
@@ -101,12 +105,25 @@ public class MovieServiceImpl implements MovieService {
     public List<MovieDto> selectAll() {
         List<Movie> movies = movieMapper.selectAll();
         List<MovieDto> movieDtos = Lists.newArrayList();
-        movies.forEach(p->{
+        movies.forEach(p -> {
             MovieDto movieDto = new MovieDto();
-            BeanUtil.copyProperties(p,movieDto);
+            BeanUtil.copyProperties(p, movieDto);
             movieDto.setMoviePicture(utils.getFileUrl(movieDto.getMoviePicture()));
             movieDtos.add(movieDto);
         });
         return movieDtos;
+    }
+
+    @Override
+    public Page selectByParam(MovieSelectParam param, Page page) {
+        PageHelper.startPage(page);
+        List<MovieDto> movieDetailDtos = movieMapper.selectByParam(param);
+        movieDetailDtos.forEach(p -> {
+            p.setMoviePicture(utils.getFileUrl(p.getMoviePicture()));
+        });
+        page.setList(movieDetailDtos);
+        PageInfo pageInfo = new PageInfo(movieDetailDtos);
+        BeanUtil.copyProperties(pageInfo, page);
+        return page;
     }
 }
