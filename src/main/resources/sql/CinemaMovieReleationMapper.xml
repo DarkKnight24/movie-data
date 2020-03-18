@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.movie.moviedata.dao.CinemaMovieReleationMapper">
+    <resultMap id="BaseResultMap" type="com.movie.moviedata.entity.CinemaMovieReleation">
+        <!--@mbg.generated-->
+        <!--@Table cinema_movie_releation-->
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="movie_id" jdbcType="BIGINT" property="movieId"/>
+        <result column="hall_type" jdbcType="BIGINT" property="hallType"/>
+        <result column="cinema_type" jdbcType="BIGINT" property="cinemaType"/>
+        <result column="suggested_price" jdbcType="DOUBLE" property="suggestedPrice"/>
+        <result column="delete_mark" jdbcType="BIT" property="deleteMark"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="start_time" jdbcType="TIMESTAMP" property="startTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, movie_id, hall_type, cinema_type, suggested_price, delete_mark, create_time,
+        start_time
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from cinema_movie_releation
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        <!--@mbg.generated-->
+        delete from cinema_movie_releation
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.movie.moviedata.entity.CinemaMovieReleation"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into cinema_movie_releation (movie_id, hall_type, cinema_type,
+        suggested_price, delete_mark, create_time,
+        start_time)
+        values (#{movieId,jdbcType=BIGINT}, #{hallType,jdbcType=BIGINT}, #{cinemaType,jdbcType=BIGINT},
+        #{suggestedPrice,jdbcType=DOUBLE}, #{deleteMark,jdbcType=BIT}, #{createTime,jdbcType=TIMESTAMP},
+        #{startTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id"
+            parameterType="com.movie.moviedata.entity.CinemaMovieReleation" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into cinema_movie_releation
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="movieId != null">
+                movie_id,
+            </if>
+            <if test="hallType != null">
+                hall_type,
+            </if>
+            <if test="cinemaType != null">
+                cinema_type,
+            </if>
+            <if test="suggestedPrice != null">
+                suggested_price,
+            </if>
+            <if test="deleteMark != null">
+                delete_mark,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="startTime != null">
+                start_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="movieId != null">
+                #{movieId,jdbcType=BIGINT},
+            </if>
+            <if test="hallType != null">
+                #{hallType,jdbcType=BIGINT},
+            </if>
+            <if test="cinemaType != null">
+                #{cinemaType,jdbcType=BIGINT},
+            </if>
+            <if test="suggestedPrice != null">
+                #{suggestedPrice,jdbcType=DOUBLE},
+            </if>
+            <if test="deleteMark != null">
+                #{deleteMark,jdbcType=BIT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="startTime != null">
+                #{startTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.movie.moviedata.entity.CinemaMovieReleation">
+        <!--@mbg.generated-->
+        update cinema_movie_releation
+        <set>
+            <if test="movieId != null">
+                movie_id = #{movieId,jdbcType=BIGINT},
+            </if>
+            <if test="hallType != null">
+                hall_type = #{hallType,jdbcType=BIGINT},
+            </if>
+            <if test="cinemaType != null">
+                cinema_type = #{cinemaType,jdbcType=BIGINT},
+            </if>
+            <if test="suggestedPrice != null">
+                suggested_price = #{suggestedPrice,jdbcType=DOUBLE},
+            </if>
+            <if test="deleteMark != null">
+                delete_mark = #{deleteMark,jdbcType=BIT},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="startTime != null">
+                start_time = #{startTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.movie.moviedata.entity.CinemaMovieReleation">
+        <!--@mbg.generated-->
+        update cinema_movie_releation
+        set movie_id = #{movieId,jdbcType=BIGINT},
+        hall_type = #{hallType,jdbcType=BIGINT},
+        cinema_type = #{cinemaType,jdbcType=BIGINT},
+        suggested_price = #{suggestedPrice,jdbcType=DOUBLE},
+        delete_mark = #{deleteMark,jdbcType=BIT},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        start_time = #{startTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateBatch" parameterType="java.util.List">
+        <!--@mbg.generated-->
+        update cinema_movie_releation
+        <trim prefix="set" suffixOverrides=",">
+            <trim prefix="movie_id = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.movieId,jdbcType=BIGINT}
+                </foreach>
+            </trim>
+            <trim prefix="hall_type = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.hallType,jdbcType=BIGINT}
+                </foreach>
+            </trim>
+            <trim prefix="cinema_type = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.cinemaType,jdbcType=BIGINT}
+                </foreach>
+            </trim>
+            <trim prefix="suggested_price = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.suggestedPrice,jdbcType=DOUBLE}
+                </foreach>
+            </trim>
+            <trim prefix="delete_mark = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.deleteMark,jdbcType=BIT}
+                </foreach>
+            </trim>
+            <trim prefix="create_time = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.createTime,jdbcType=TIMESTAMP}
+                </foreach>
+            </trim>
+            <trim prefix="start_time = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.startTime,jdbcType=TIMESTAMP}
+                </foreach>
+            </trim>
+        </trim>
+        where id in
+        <foreach close=")" collection="list" item="item" open="(" separator=", ">
+            #{item.id,jdbcType=BIGINT}
+        </foreach>
+    </update>
+    <update id="updateBatchSelective" parameterType="java.util.List">
+        <!--@mbg.generated-->
+        update cinema_movie_releation
+        <trim prefix="set" suffixOverrides=",">
+            <trim prefix="movie_id = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.movieId != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.movieId,jdbcType=BIGINT}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="hall_type = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.hallType != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.hallType,jdbcType=BIGINT}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="cinema_type = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.cinemaType != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.cinemaType,jdbcType=BIGINT}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="suggested_price = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.suggestedPrice != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.suggestedPrice,jdbcType=DOUBLE}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="delete_mark = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.deleteMark != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.deleteMark,jdbcType=BIT}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="create_time = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.createTime != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.createTime,jdbcType=TIMESTAMP}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="start_time = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.startTime != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.startTime,jdbcType=TIMESTAMP}
+                    </if>
+                </foreach>
+            </trim>
+        </trim>
+        where id in
+        <foreach close=")" collection="list" item="item" open="(" separator=", ">
+            #{item.id,jdbcType=BIGINT}
+        </foreach>
+    </update>
+    <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into cinema_movie_releation
+        (movie_id, hall_type, cinema_type, suggested_price, delete_mark, create_time, start_time
+        )
+        values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.movieId,jdbcType=BIGINT}, #{item.hallType,jdbcType=BIGINT}, #{item.cinemaType,jdbcType=BIGINT},
+            #{item.suggestedPrice,jdbcType=DOUBLE}, #{item.deleteMark,jdbcType=BIT},
+            #{item.createTime,jdbcType=TIMESTAMP},
+            #{item.startTime,jdbcType=TIMESTAMP})
+        </foreach>
+    </insert>
+    <insert id="insertOrUpdate" keyColumn="id" keyProperty="id"
+            parameterType="com.movie.moviedata.entity.CinemaMovieReleation" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into cinema_movie_releation
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            movie_id,
+            hall_type,
+            cinema_type,
+            suggested_price,
+            delete_mark,
+            create_time,
+            start_time,
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            #{movieId,jdbcType=BIGINT},
+            #{hallType,jdbcType=BIGINT},
+            #{cinemaType,jdbcType=BIGINT},
+            #{suggestedPrice,jdbcType=DOUBLE},
+            #{deleteMark,jdbcType=BIT},
+            #{createTime,jdbcType=TIMESTAMP},
+            #{startTime,jdbcType=TIMESTAMP},
+        </trim>
+        on duplicate key update
+        <trim suffixOverrides=",">
+            <if test="id != null">
+                id = #{id,jdbcType=BIGINT},
+            </if>
+            movie_id = #{movieId,jdbcType=BIGINT},
+            hall_type = #{hallType,jdbcType=BIGINT},
+            cinema_type = #{cinemaType,jdbcType=BIGINT},
+            suggested_price = #{suggestedPrice,jdbcType=DOUBLE},
+            delete_mark = #{deleteMark,jdbcType=BIT},
+            create_time = #{createTime,jdbcType=TIMESTAMP},
+            start_time = #{startTime,jdbcType=TIMESTAMP},
+        </trim>
+    </insert>
+    <insert id="insertOrUpdateSelective" keyColumn="id" keyProperty="id"
+            parameterType="com.movie.moviedata.entity.CinemaMovieReleation" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into cinema_movie_releation
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="movieId != null">
+                movie_id,
+            </if>
+            <if test="hallType != null">
+                hall_type,
+            </if>
+            <if test="cinemaType != null">
+                cinema_type,
+            </if>
+            <if test="suggestedPrice != null">
+                suggested_price,
+            </if>
+            <if test="deleteMark != null">
+                delete_mark,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="startTime != null">
+                start_time,
+            </if>
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="movieId != null">
+                #{movieId,jdbcType=BIGINT},
+            </if>
+            <if test="hallType != null">
+                #{hallType,jdbcType=BIGINT},
+            </if>
+            <if test="cinemaType != null">
+                #{cinemaType,jdbcType=BIGINT},
+            </if>
+            <if test="suggestedPrice != null">
+                #{suggestedPrice,jdbcType=DOUBLE},
+            </if>
+            <if test="deleteMark != null">
+                #{deleteMark,jdbcType=BIT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="startTime != null">
+                #{startTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+        on duplicate key update
+        <trim suffixOverrides=",">
+            <if test="id != null">
+                id = #{id,jdbcType=BIGINT},
+            </if>
+            <if test="movieId != null">
+                movie_id = #{movieId,jdbcType=BIGINT},
+            </if>
+            <if test="hallType != null">
+                hall_type = #{hallType,jdbcType=BIGINT},
+            </if>
+            <if test="cinemaType != null">
+                cinema_type = #{cinemaType,jdbcType=BIGINT},
+            </if>
+            <if test="suggestedPrice != null">
+                suggested_price = #{suggestedPrice,jdbcType=DOUBLE},
+            </if>
+            <if test="deleteMark != null">
+                delete_mark = #{deleteMark,jdbcType=BIT},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="startTime != null">
+                start_time = #{startTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <select id="selectBySelective" resultType="com.movie.moviedata.dto.CinemaMovieDto">
+
+    </select>
+</mapper>
