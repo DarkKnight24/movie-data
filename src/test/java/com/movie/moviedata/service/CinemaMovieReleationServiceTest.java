@@ -8,6 +8,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.movie.base.utils.JsonUtil;
+import com.movie.base.utils.Page;
 import com.movie.moviedata.entity.CinemaMovieReleation;
 
 @SpringBootTest
@@ -79,5 +81,8 @@ public class CinemaMovieReleationServiceTest {
     
     @Test
     public void selectBySelective() {
+        Page page = cinemaMovieReleationService.selectBySelective(null, new Page());
+        System.out.println(JsonUtil.toJson(page));
     }
+    
 }

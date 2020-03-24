@@ -377,6 +377,12 @@
         </trim>
     </insert>
     <select id="selectBySelective" resultType="com.movie.moviedata.dto.CinemaMovieDto">
+        SELECT a.id,b.cinema_type cinemaType,d.movie_cn_name movieName,a.suggested_price suggestedPrice,d.movie_releaseDate movieReleaseDate,a.box_office boxOffice
+        FROM cinema_movie_releation a
+        LEFT JOIN cinema_type b ON a.cinema_type = b.cinema_id
+        LEFT JOIN movie d ON a.movie_id = d.movie_id
+        WHERE
+        a.delete_mark = false
 
     </select>
 </mapper>

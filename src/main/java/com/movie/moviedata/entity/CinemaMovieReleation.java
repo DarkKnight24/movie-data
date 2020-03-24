@@ -19,11 +19,6 @@ public class CinemaMovieReleation {
     private Long movieId;
     
     /**
-     * 影厅类别
-     */
-    private Long hallType;
-    
-    /**
      * 影院品牌
      */
     private Long cinemaType;
