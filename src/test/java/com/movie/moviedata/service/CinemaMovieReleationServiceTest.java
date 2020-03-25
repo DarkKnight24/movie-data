@@ -69,7 +69,6 @@ public class CinemaMovieReleationServiceTest {
             for (int j = 1; j <= 10; j++) {
                 CinemaMovieReleation cinemaMovieReleation = new CinemaMovieReleation().setCinemaType((long)j)
                     .setMovieId((long)(7 + i))
-                    .setHallType((long)j)
                     .setSuggestedPrice(35.6 * (1 + j * 0.45) + random.nextDouble() / 0.5)
                     .setStartTime(movieService.selectByPrimaryKey((long)(7 + i)).getMovieReleasedate());
                 list.add(cinemaMovieReleation);

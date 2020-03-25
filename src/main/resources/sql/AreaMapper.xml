@@ -1,251 +1,261 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.movie.moviedata.dao.AreaMapper">
-  <resultMap id="BaseResultMap" type="com.movie.moviedata.entity.Area">
-    <!--@mbg.generated-->
-    <!--@Table area-->
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="parent_id" jdbcType="BIGINT" property="parentId" />
-    <result column="area_name" jdbcType="VARCHAR" property="areaName" />
-    <result column="delete_mark" jdbcType="BIT" property="deleteMark" />
-    <result column="area_type" jdbcType="BOOLEAN" property="areaType" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    <!--@mbg.generated-->
-    id, parent_id, area_name, delete_mark, area_type
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    <!--@mbg.generated-->
-    select 
-    <include refid="Base_Column_List" />
-    from area
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    <!--@mbg.generated-->
-    delete from area
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.movie.moviedata.entity.Area">
-    <!--@mbg.generated-->
-    insert into area (id, parent_id, area_name, 
-      delete_mark, area_type)
-    values (#{id,jdbcType=INTEGER}, #{parentId,jdbcType=BIGINT}, #{areaName,jdbcType=VARCHAR}, 
-      #{deleteMark,jdbcType=BIT}, #{areaType,jdbcType=BOOLEAN})
-  </insert>
-  <insert id="insertSelective" parameterType="com.movie.moviedata.entity.Area">
-    <!--@mbg.generated-->
-    insert into area
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      <if test="parentId != null">
-        parent_id,
-      </if>
-      <if test="areaName != null and areaName != ''">
-        area_name,
-      </if>
-      <if test="deleteMark != null">
-        delete_mark,
-      </if>
-      <if test="areaType != null">
-        area_type,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="parentId != null">
-        #{parentId,jdbcType=BIGINT},
-      </if>
-      <if test="areaName != null and areaName != ''">
-        #{areaName,jdbcType=VARCHAR},
-      </if>
-      <if test="deleteMark != null">
-        #{deleteMark,jdbcType=BIT},
-      </if>
-      <if test="areaType != null">
-        #{areaType,jdbcType=BOOLEAN},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.movie.moviedata.entity.Area">
-    <!--@mbg.generated-->
-    update area
-    <set>
-      <if test="parentId != null">
-        parent_id = #{parentId,jdbcType=BIGINT},
-      </if>
-      <if test="areaName != null and areaName != ''">
+    <resultMap id="BaseResultMap" type="com.movie.moviedata.entity.Area">
+        <!--@mbg.generated-->
+        <!--@Table area-->
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="parent_id" jdbcType="BIGINT" property="parentId"/>
+        <result column="area_name" jdbcType="VARCHAR" property="areaName"/>
+        <result column="delete_mark" jdbcType="BIT" property="deleteMark"/>
+        <result column="area_type" jdbcType="BOOLEAN" property="areaType"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, parent_id, area_name, delete_mark, area_type
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from area
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        <!--@mbg.generated-->
+        delete from area
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.movie.moviedata.entity.Area">
+        <!--@mbg.generated-->
+        insert into area (id, parent_id, area_name,
+        delete_mark, area_type)
+        values (#{id,jdbcType=INTEGER}, #{parentId,jdbcType=BIGINT}, #{areaName,jdbcType=VARCHAR},
+        #{deleteMark,jdbcType=BIT}, #{areaType,jdbcType=BOOLEAN})
+    </insert>
+    <insert id="insertSelective" parameterType="com.movie.moviedata.entity.Area">
+        <!--@mbg.generated-->
+        insert into area
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="parentId != null">
+                parent_id,
+            </if>
+            <if test="areaName != null and areaName != ''">
+                area_name,
+            </if>
+            <if test="deleteMark != null">
+                delete_mark,
+            </if>
+            <if test="areaType != null">
+                area_type,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="parentId != null">
+                #{parentId,jdbcType=BIGINT},
+            </if>
+            <if test="areaName != null and areaName != ''">
+                #{areaName,jdbcType=VARCHAR},
+            </if>
+            <if test="deleteMark != null">
+                #{deleteMark,jdbcType=BIT},
+            </if>
+            <if test="areaType != null">
+                #{areaType,jdbcType=BOOLEAN},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.movie.moviedata.entity.Area">
+        <!--@mbg.generated-->
+        update area
+        <set>
+            <if test="parentId != null">
+                parent_id = #{parentId,jdbcType=BIGINT},
+            </if>
+            <if test="areaName != null and areaName != ''">
+                area_name = #{areaName,jdbcType=VARCHAR},
+            </if>
+            <if test="deleteMark != null">
+                delete_mark = #{deleteMark,jdbcType=BIT},
+            </if>
+            <if test="areaType != null">
+                area_type = #{areaType,jdbcType=BOOLEAN},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.movie.moviedata.entity.Area">
+        <!--@mbg.generated-->
+        update area
+        set parent_id = #{parentId,jdbcType=BIGINT},
         area_name = #{areaName,jdbcType=VARCHAR},
-      </if>
-      <if test="deleteMark != null">
         delete_mark = #{deleteMark,jdbcType=BIT},
-      </if>
-      <if test="areaType != null">
-        area_type = #{areaType,jdbcType=BOOLEAN},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.movie.moviedata.entity.Area">
-    <!--@mbg.generated-->
-    update area
-    set parent_id = #{parentId,jdbcType=BIGINT},
-      area_name = #{areaName,jdbcType=VARCHAR},
-      delete_mark = #{deleteMark,jdbcType=BIT},
-      area_type = #{areaType,jdbcType=BOOLEAN}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateBatch" parameterType="java.util.List">
-    <!--@mbg.generated-->
-    update area
-    <trim prefix="set" suffixOverrides=",">
-      <trim prefix="parent_id = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          when id = #{item.id,jdbcType=INTEGER} then #{item.parentId,jdbcType=BIGINT}
+        area_type = #{areaType,jdbcType=BOOLEAN}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateBatch" parameterType="java.util.List">
+        <!--@mbg.generated-->
+        update area
+        <trim prefix="set" suffixOverrides=",">
+            <trim prefix="parent_id = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=INTEGER} then #{item.parentId,jdbcType=BIGINT}
+                </foreach>
+            </trim>
+            <trim prefix="area_name = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=INTEGER} then #{item.areaName,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="delete_mark = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=INTEGER} then #{item.deleteMark,jdbcType=BIT}
+                </foreach>
+            </trim>
+            <trim prefix="area_type = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=INTEGER} then #{item.areaType,jdbcType=BOOLEAN}
+                </foreach>
+            </trim>
+        </trim>
+        where id in
+        <foreach close=")" collection="list" item="item" open="(" separator=", ">
+            #{item.id,jdbcType=INTEGER}
         </foreach>
-      </trim>
-      <trim prefix="area_name = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          when id = #{item.id,jdbcType=INTEGER} then #{item.areaName,jdbcType=VARCHAR}
+    </update>
+    <update id="updateBatchSelective" parameterType="java.util.List">
+        <!--@mbg.generated-->
+        update area
+        <trim prefix="set" suffixOverrides=",">
+            <trim prefix="parent_id = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.parentId != null">
+                        when id = #{item.id,jdbcType=INTEGER} then #{item.parentId,jdbcType=BIGINT}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="area_name = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.areaName != null">
+                        when id = #{item.id,jdbcType=INTEGER} then #{item.areaName,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="delete_mark = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.deleteMark != null">
+                        when id = #{item.id,jdbcType=INTEGER} then #{item.deleteMark,jdbcType=BIT}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="area_type = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.areaType != null">
+                        when id = #{item.id,jdbcType=INTEGER} then #{item.areaType,jdbcType=BOOLEAN}
+                    </if>
+                </foreach>
+            </trim>
+        </trim>
+        where id in
+        <foreach close=")" collection="list" item="item" open="(" separator=", ">
+            #{item.id,jdbcType=INTEGER}
         </foreach>
-      </trim>
-      <trim prefix="delete_mark = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          when id = #{item.id,jdbcType=INTEGER} then #{item.deleteMark,jdbcType=BIT}
+    </update>
+    <insert id="batchInsert" parameterType="map">
+        <!--@mbg.generated-->
+        insert into area
+        (id, parent_id, area_name, delete_mark, area_type)
+        values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.id,jdbcType=INTEGER}, #{item.parentId,jdbcType=BIGINT}, #{item.areaName,jdbcType=VARCHAR},
+            #{item.deleteMark,jdbcType=BIT}, #{item.areaType,jdbcType=BOOLEAN})
         </foreach>
-      </trim>
-      <trim prefix="area_type = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          when id = #{item.id,jdbcType=INTEGER} then #{item.areaType,jdbcType=BOOLEAN}
-        </foreach>
-      </trim>
-    </trim>
-    where id in
-    <foreach close=")" collection="list" item="item" open="(" separator=", ">
-      #{item.id,jdbcType=INTEGER}
-    </foreach>
-  </update>
-  <update id="updateBatchSelective" parameterType="java.util.List">
-    <!--@mbg.generated-->
-    update area
-    <trim prefix="set" suffixOverrides=",">
-      <trim prefix="parent_id = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          <if test="item.parentId != null">
-            when id = #{item.id,jdbcType=INTEGER} then #{item.parentId,jdbcType=BIGINT}
-          </if>
-        </foreach>
-      </trim>
-      <trim prefix="area_name = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          <if test="item.areaName != null">
-            when id = #{item.id,jdbcType=INTEGER} then #{item.areaName,jdbcType=VARCHAR}
-          </if>
-        </foreach>
-      </trim>
-      <trim prefix="delete_mark = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          <if test="item.deleteMark != null">
-            when id = #{item.id,jdbcType=INTEGER} then #{item.deleteMark,jdbcType=BIT}
-          </if>
-        </foreach>
-      </trim>
-      <trim prefix="area_type = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          <if test="item.areaType != null">
-            when id = #{item.id,jdbcType=INTEGER} then #{item.areaType,jdbcType=BOOLEAN}
-          </if>
-        </foreach>
-      </trim>
-    </trim>
-    where id in
-    <foreach close=")" collection="list" item="item" open="(" separator=", ">
-      #{item.id,jdbcType=INTEGER}
-    </foreach>
-  </update>
-  <insert id="batchInsert" parameterType="map">
-    <!--@mbg.generated-->
-    insert into area
-    (id, parent_id, area_name, delete_mark, area_type)
-    values
-    <foreach collection="list" item="item" separator=",">
-      (#{item.id,jdbcType=INTEGER}, #{item.parentId,jdbcType=BIGINT}, #{item.areaName,jdbcType=VARCHAR}, 
-        #{item.deleteMark,jdbcType=BIT}, #{item.areaType,jdbcType=BOOLEAN})
-    </foreach>
-  </insert>
-  <insert id="insertOrUpdate" parameterType="com.movie.moviedata.entity.Area">
-    <!--@mbg.generated-->
-    insert into area
-    (id, parent_id, area_name, delete_mark, area_type)
-    values
-    (#{id,jdbcType=INTEGER}, #{parentId,jdbcType=BIGINT}, #{areaName,jdbcType=VARCHAR}, 
-      #{deleteMark,jdbcType=BIT}, #{areaType,jdbcType=BOOLEAN})
-    on duplicate key update 
-    id = #{id,jdbcType=INTEGER}, 
-    parent_id = #{parentId,jdbcType=BIGINT}, 
-    area_name = #{areaName,jdbcType=VARCHAR}, 
-    delete_mark = #{deleteMark,jdbcType=BIT}, 
-    area_type = #{areaType,jdbcType=BOOLEAN}
-  </insert>
-  <insert id="insertOrUpdateSelective" parameterType="com.movie.moviedata.entity.Area">
-    <!--@mbg.generated-->
-    insert into area
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      <if test="parentId != null">
-        parent_id,
-      </if>
-      <if test="areaName != null">
-        area_name,
-      </if>
-      <if test="deleteMark != null">
-        delete_mark,
-      </if>
-      <if test="areaType != null">
-        area_type,
-      </if>
-    </trim>
-    values
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="parentId != null">
-        #{parentId,jdbcType=BIGINT},
-      </if>
-      <if test="areaName != null">
-        #{areaName,jdbcType=VARCHAR},
-      </if>
-      <if test="deleteMark != null">
-        #{deleteMark,jdbcType=BIT},
-      </if>
-      <if test="areaType != null">
-        #{areaType,jdbcType=BOOLEAN},
-      </if>
-    </trim>
-    on duplicate key update 
-    <trim suffixOverrides=",">
-      <if test="id != null">
+    </insert>
+    <insert id="insertOrUpdate" parameterType="com.movie.moviedata.entity.Area">
+        <!--@mbg.generated-->
+        insert into area
+        (id, parent_id, area_name, delete_mark, area_type)
+        values
+        (#{id,jdbcType=INTEGER}, #{parentId,jdbcType=BIGINT}, #{areaName,jdbcType=VARCHAR},
+        #{deleteMark,jdbcType=BIT}, #{areaType,jdbcType=BOOLEAN})
+        on duplicate key update
         id = #{id,jdbcType=INTEGER},
-      </if>
-      <if test="parentId != null">
         parent_id = #{parentId,jdbcType=BIGINT},
-      </if>
-      <if test="areaName != null">
         area_name = #{areaName,jdbcType=VARCHAR},
-      </if>
-      <if test="deleteMark != null">
         delete_mark = #{deleteMark,jdbcType=BIT},
-      </if>
-      <if test="areaType != null">
-        area_type = #{areaType,jdbcType=BOOLEAN},
-      </if>
-    </trim>
-  </insert>
+        area_type = #{areaType,jdbcType=BOOLEAN}
+    </insert>
+    <insert id="insertOrUpdateSelective" parameterType="com.movie.moviedata.entity.Area">
+        <!--@mbg.generated-->
+        insert into area
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="parentId != null">
+                parent_id,
+            </if>
+            <if test="areaName != null">
+                area_name,
+            </if>
+            <if test="deleteMark != null">
+                delete_mark,
+            </if>
+            <if test="areaType != null">
+                area_type,
+            </if>
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="parentId != null">
+                #{parentId,jdbcType=BIGINT},
+            </if>
+            <if test="areaName != null">
+                #{areaName,jdbcType=VARCHAR},
+            </if>
+            <if test="deleteMark != null">
+                #{deleteMark,jdbcType=BIT},
+            </if>
+            <if test="areaType != null">
+                #{areaType,jdbcType=BOOLEAN},
+            </if>
+        </trim>
+        on duplicate key update
+        <trim suffixOverrides=",">
+            <if test="id != null">
+                id = #{id,jdbcType=INTEGER},
+            </if>
+            <if test="parentId != null">
+                parent_id = #{parentId,jdbcType=BIGINT},
+            </if>
+            <if test="areaName != null">
+                area_name = #{areaName,jdbcType=VARCHAR},
+            </if>
+            <if test="deleteMark != null">
+                delete_mark = #{deleteMark,jdbcType=BIT},
+            </if>
+            <if test="areaType != null">
+                area_type = #{areaType,jdbcType=BOOLEAN},
+            </if>
+        </trim>
+    </insert>
+    <select id="selectByName" resultMap="BaseResultMap">
+        SELECT id,parent_id,area_name,area_type
+        FROM area
+        WHERE MATCH (area_name) AGAINST(#{cityName}) LIMIT 1
+    </select>
+    <select id="selectByPId" resultMap="BaseResultMap">
+        SELECT id,parent_id,area_name,area_type
+        FROM area
+        WHERE parent_id = #{id}
+    </select>
 </mapper>

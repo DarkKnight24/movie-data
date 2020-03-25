@@ -1,10 +1,12 @@
 package com.movie.moviedata.dao;
 
-import com.movie.moviedata.entity.Area;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+
+import com.movie.moviedata.entity.Area;
+
 @Mapper
 public interface AreaMapper {
     int deleteByPrimaryKey(Integer id);
@@ -28,4 +30,8 @@ public interface AreaMapper {
     int updateBatchSelective(List<Area> list);
 
     int batchInsert(@Param("list") List<Area> list);
+
+    Area selectByName(String cityName);
+
+    List<Area> selectByPId(Integer id);
 }
