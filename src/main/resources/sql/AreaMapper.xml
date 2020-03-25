@@ -7,8 +7,8 @@
         <id column="id" jdbcType="INTEGER" property="id"/>
         <result column="parent_id" jdbcType="BIGINT" property="parentId"/>
         <result column="area_name" jdbcType="VARCHAR" property="areaName"/>
-        <result column="delete_mark" jdbcType="BIT" property="deleteMark"/>
-        <result column="area_type" jdbcType="BOOLEAN" property="areaType"/>
+        <result column="delete_mark" jdbcType="BOOLEAN" property="deleteMark"/>
+        <result column="area_type" jdbcType="INTEGER" property="areaType"/>
     </resultMap>
     <sql id="Base_Column_List">
         <!--@mbg.generated-->

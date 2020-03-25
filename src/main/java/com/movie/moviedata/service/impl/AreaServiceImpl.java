@@ -75,7 +75,8 @@ public class AreaServiceImpl implements AreaService {
     public List<Area> selectByProvince(String cityName) {
         
         Area area = areaMapper.selectByName(cityName);
+        List<Area> areas = areaMapper.selectByPId(area.getId());
         
-        return areaMapper.selectByPId(area.getId());
+        return areas.size() <= 1 ? areaMapper.selectByPId(areas.get(0).getId()) : areas;
     }
 }

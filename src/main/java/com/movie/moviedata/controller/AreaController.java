@@ -18,8 +18,8 @@ public class AreaController {
     private AreaService areaService;
     
     @ResponseBody
-    @GetMapping("city/{cityName}")
-    public Object getCityByProvince(@PathVariable String cityName) {
+    @PostMapping("city")
+    public Object getCityByProvince(@RequestBody String cityName) {
         return areaService.selectByProvince(cityName);
     }
 }
