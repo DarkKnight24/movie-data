@@ -5,32 +5,37 @@ import lombok.Data;
 @Data
 public class Cinema {
     /**
-    * 主键ID
-    */
+     * 主键ID
+     */
     private Long id;
-
+    
     /**
-    * 影院名称
-    */
+     * 影院名称
+     */
     private String cinemaName;
-
+    
     /**
-    * 影院类别
-    */
+     * 影院类别
+     */
     private Long cinemaType;
-
+    
     /**
-    * 影院地址
-    */
+     * 影院地址
+     */
     private String cinemaAddress;
-
+    
     /**
-    * 所属地区
-    */
+     * 所属地区
+     */
     private Long belongArea;
-
+    
     /**
-    * 删除标识
-    */
+     * 影院照片
+     */
+    private String cinemaImageUrl;
+    
+    /**
+     * 删除标识
+     */
     private Boolean deleteMark;
 }
