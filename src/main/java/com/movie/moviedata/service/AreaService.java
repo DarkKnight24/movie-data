@@ -30,4 +30,7 @@ public interface AreaService {
     
     List<Area> selectByProvince(String cityName);
     
+    List<Area> selectAllProvince();
+    
+    List<Area> selectBypId(Integer pId);
 }

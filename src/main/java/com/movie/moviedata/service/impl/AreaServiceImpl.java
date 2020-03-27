@@ -79,4 +79,14 @@ public class AreaServiceImpl implements AreaService {
         
         return areas.size() <= 1 ? areaMapper.selectByPId(areas.get(0).getId()) : areas;
     }
+    
+    @Override
+    public List<Area> selectAllProvince() {
+        return areaMapper.selectByPId(1);
+    }
+    
+    @Override
+    public List<Area> selectBypId(Integer pId) {
+        return areaMapper.selectByPId(pId);
+    }
 }

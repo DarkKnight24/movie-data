@@ -22,4 +22,16 @@ public class AreaController {
     public Object getCityByProvince(@RequestBody String cityName) {
         return areaService.selectByProvince(cityName);
     }
+    
+    @ResponseBody
+    @GetMapping("province/all")
+    public Object getAllProvince() {
+        return areaService.selectAllProvince();
+    }
+    
+    @ResponseBody
+    @GetMapping("select/by-pid/{pId}")
+    public Object getAreaBypId(@PathVariable Integer pId) {
+        return areaService.selectBypId(pId);
+    }
 }
