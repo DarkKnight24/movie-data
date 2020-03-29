@@ -1,7 +1,13 @@
 package com.movie.moviedata.service;
 
 import java.util.List;
+
+import com.movie.base.utils.Page;
+import com.movie.moviedata.dto.CinemaDetailDto;
+import com.movie.moviedata.dto.CinemaDto;
 import com.movie.moviedata.entity.Cinema;
+import com.movie.moviedata.param.CinemaSelectParam;
+
 public interface CinemaService{
 
 
@@ -15,7 +21,7 @@ public interface CinemaService{
 
     int insertSelective(Cinema record);
 
-    Cinema selectByPrimaryKey(Long id);
+    CinemaDetailDto selectByPrimaryKey(Long id);
 
     int updateByPrimaryKeySelective(Cinema record);
 
@@ -27,5 +33,7 @@ public interface CinemaService{
 
     int batchInsert(List<Cinema> list);
 
+    Page selectByParam(Page page, CinemaSelectParam param);
 
+    List<Cinema> selectCinema(Long cinemaType);
 }

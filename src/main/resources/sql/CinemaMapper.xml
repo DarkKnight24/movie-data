@@ -15,12 +15,17 @@
         <!--@mbg.generated-->
         id, cinema_name, cinema_type, cinema_address, belong_area, delete_mark
     </sql>
-    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+
+    <sql id="Base_Dto_List">
+        a.id,b.cinema_type cinemaType,a.cinema_type cinemaTypeId,
+        a.cinema_name cinemaName,a.cinema_address cinemaAddress,a.belong_area areaId,a.cinema_image cinemaImageUrl
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultType="com.movie.moviedata.dto.CinemaDto">
         <!--@mbg.generated-->
         select
-        <include refid="Base_Column_List"/>
-        from cinema
-        where id = #{id,jdbcType=BIGINT}
+        <include refid="Base_Dto_List"/>
+        from cinema a LEFT JOIN cinema_type b ON a.cinema_type=b.cinema_id
+        where a.id = #{id,jdbcType=BIGINT} AND a.delete_mark=false
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
         <!--@mbg.generated-->
@@ -103,7 +108,10 @@
                 belong_area = #{belongArea,jdbcType=BIGINT},
             </if>
             <if test="deleteMark != null">
-                delete_mark = #{deleteMark,jdbcType=BIT},
+                delete_mark = #{deleteMark,jdbcType=BIT} ,
+            </if>
+            <if test="cinemaImageUrl != null and cinemaImageUrl != ''">
+                cinema_image = #{cinemaImageUrl,jdbcType=VARCHAR} ,
             </if>
         </set>
         where id = #{id,jdbcType=BIGINT}
@@ -291,4 +299,20 @@
             </if>
         </trim>
     </insert>
+    <select id="selectByPyParam" resultType="com.movie.moviedata.dto.CinemaDto">
+        SELECT
+        <include refid="Base_Dto_List"></include>
+        FROM cinema a
+        LEFT JOIN cinema_type b ON a.cinema_type = b.cinema_id
+        WHERE
+        a.delete_mark=false
+    </select>
+    <select id="selectCinemaAll" resultMap="BaseResultMap">
+        SELECT
+        id,cinema_name
+        FROM cinema
+        WHERE
+        delete_mark=false
+        and cinema_type = #{cinemaType}
+    </select>
 </mapper>

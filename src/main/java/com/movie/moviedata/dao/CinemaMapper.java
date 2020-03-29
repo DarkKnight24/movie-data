@@ -1,8 +1,10 @@
 package com.movie.moviedata.dao;
 
+import com.movie.moviedata.dto.CinemaDto;
 import com.movie.moviedata.entity.Cinema;
 import java.util.List;
 
+import com.movie.moviedata.param.CinemaSelectParam;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 @Mapper
@@ -17,7 +19,7 @@ public interface CinemaMapper {
 
     int insertSelective(Cinema record);
 
-    Cinema selectByPrimaryKey(Long id);
+    CinemaDto selectByPrimaryKey(Long id);
 
     int updateByPrimaryKeySelective(Cinema record);
 
@@ -28,4 +30,8 @@ public interface CinemaMapper {
     int updateBatchSelective(List<Cinema> list);
 
     int batchInsert(@Param("list") List<Cinema> list);
+
+    List<CinemaDto> selectByPyParam(CinemaSelectParam param);
+
+    List<Cinema> selectCinemaAll(Long cinemaType);
 }
