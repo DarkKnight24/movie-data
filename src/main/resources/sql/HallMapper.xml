@@ -291,6 +291,6 @@
     FROM hall a LEFT JOIN hall_type b ON a.hall_type = b.hall_id
     LEFT JOIN cinema c ON a.cinema_id = c.id
     WHERE
-    a.delete_mark=false;
+    a.delete_mark=false
   </select>
 </mapper>
