@@ -1,12 +1,12 @@
 package com.movie.moviedata.controller;
 
-import com.movie.base.utils.Page;
-import com.movie.moviedata.param.CinemaSelectParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import com.movie.base.utils.Page;
 import com.movie.moviedata.entity.Cinema;
+import com.movie.moviedata.param.CinemaSelectParam;
 import com.movie.moviedata.service.CinemaService;
 import com.movie.moviedata.service.CinemaTypeService;
 
@@ -36,35 +36,41 @@ public class CinemaController {
     public Object insertCinema(Cinema cinema) {
         return cinemaService.insertSelective(cinema) > 0;
     }
-
+    
     @ResponseBody
     @GetMapping("all")
-    public Object selectCinemaByParam(Page page, CinemaSelectParam param){
-        return cinemaService.selectByParam(page,param);
+    public Object selectCinemaByParam(Page page, CinemaSelectParam param) {
+        return cinemaService.selectByParam(page, param);
     }
-
+    
     @ResponseBody
     @GetMapping("get-cinema/{cinemaTypeId}")
-    public Object selectCinemaAll(@PathVariable Long cinemaTypeId){
+    public Object selectCinemaAll(@PathVariable Long cinemaTypeId) {
         return cinemaService.selectCinema(cinemaTypeId);
     }
-
+    
     @ResponseBody
     @GetMapping("detail/{cinemaId}")
-    public Object selectCinemaById(@PathVariable Long cinemaId){
+    public Object selectCinemaById(@PathVariable Long cinemaId) {
         return cinemaService.selectByPrimaryKey(cinemaId);
     }
-
+    
     @ResponseBody
     @PostMapping("delete")
-    public Object deleteCinema(Cinema cinema){
+    public Object deleteCinema(Cinema cinema) {
         cinema.setDeleteMark(true);
-        return cinemaService.updateByPrimaryKeySelective(cinema)>0;
+        return cinemaService.updateByPrimaryKeySelective(cinema) > 0;
     }
-
+    
     @ResponseBody
     @PostMapping("update")
-    public Object updateCinema(Cinema cinema){
-        return cinemaService.updateByPrimaryKeySelective(cinema)>0;
+    public Object updateCinema(Cinema cinema) {
+        return cinemaService.updateByPrimaryKeySelective(cinema) > 0;
+    }
+    
+    @ResponseBody
+    @PostMapping("get-movie/{cinemaTypeId}")
+    public Object selectCinemaAllMovie(@PathVariable Long cinemaTypeId) {
+        return cinemaService.selectMovie(cinemaTypeId);
     }
 }

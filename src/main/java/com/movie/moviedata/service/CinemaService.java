@@ -4,11 +4,11 @@ import java.util.List;
 
 import com.movie.base.utils.Page;
 import com.movie.moviedata.dto.CinemaDetailDto;
-import com.movie.moviedata.dto.CinemaDto;
+import com.movie.moviedata.dto.MovieDto;
 import com.movie.moviedata.entity.Cinema;
 import com.movie.moviedata.param.CinemaSelectParam;
 
-public interface CinemaService{
+public interface CinemaService {
 
 
     int deleteByPrimaryKey(Long id);
@@ -36,4 +36,6 @@ public interface CinemaService{
     Page selectByParam(Page page, CinemaSelectParam param);
 
     List<Cinema> selectCinema(Long cinemaType);
+
+    List<MovieDto> selectMovie(Long cinemaTypeId);
 }

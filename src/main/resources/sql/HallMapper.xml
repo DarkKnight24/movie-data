@@ -1,288 +1,296 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.movie.moviedata.dao.HallMapper">
-  <resultMap id="BaseResultMap" type="com.movie.moviedata.entity.Hall">
-    <!--@mbg.generated-->
-    <!--@Table hall-->
-    <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="cinema_id" jdbcType="BIGINT" property="cinemaId" />
-    <result column="hall_type" jdbcType="BIGINT" property="hallType" />
-    <result column="hall_name" jdbcType="VARCHAR" property="hallName" />
-    <result column="hall_capacity" jdbcType="INTEGER" property="hallCapacity" />
-    <result column="delete_mark" jdbcType="BIT" property="deleteMark" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    <!--@mbg.generated-->
-    id, cinema_id, hall_type, hall_name, hall_capacity, delete_mark
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    <!--@mbg.generated-->
-    select 
-    <include refid="Base_Column_List" />
-    from hall
-    where id = #{id,jdbcType=BIGINT}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    <!--@mbg.generated-->
-    delete from hall
-    where id = #{id,jdbcType=BIGINT}
-  </delete>
-  <insert id="insert" parameterType="com.movie.moviedata.entity.Hall">
-    <!--@mbg.generated-->
-    insert into hall (id, cinema_id, hall_type, 
-      hall_name, hall_capacity, delete_mark
-      )
-    values (#{id,jdbcType=BIGINT}, #{cinemaId,jdbcType=BIGINT}, #{hallType,jdbcType=BIGINT}, 
-      #{hallName,jdbcType=VARCHAR}, #{hallCapacity,jdbcType=INTEGER}, #{deleteMark,jdbcType=BIT}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="com.movie.moviedata.entity.Hall">
-    <!--@mbg.generated-->
-    insert into hall
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      <if test="cinemaId != null">
-        cinema_id,
-      </if>
-      <if test="hallType != null">
-        hall_type,
-      </if>
-      <if test="hallName != null and hallName != ''">
-        hall_name,
-      </if>
-      <if test="hallCapacity != null">
-        hall_capacity,
-      </if>
-      <if test="deleteMark != null">
-        delete_mark,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=BIGINT},
-      </if>
-      <if test="cinemaId != null">
-        #{cinemaId,jdbcType=BIGINT},
-      </if>
-      <if test="hallType != null">
-        #{hallType,jdbcType=BIGINT},
-      </if>
-      <if test="hallName != null and hallName != ''">
-        #{hallName,jdbcType=VARCHAR},
-      </if>
-      <if test="hallCapacity != null">
-        #{hallCapacity,jdbcType=INTEGER},
-      </if>
-      <if test="deleteMark != null">
-        #{deleteMark,jdbcType=BIT},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.movie.moviedata.entity.Hall">
-    <!--@mbg.generated-->
-    update hall
-    <set>
-      <if test="cinemaId != null">
-        cinema_id = #{cinemaId,jdbcType=BIGINT},
-      </if>
-      <if test="hallType != null">
-        hall_type = #{hallType,jdbcType=BIGINT},
-      </if>
-      <if test="hallName != null and hallName != ''">
-        hall_name = #{hallName,jdbcType=VARCHAR},
-      </if>
-      <if test="hallCapacity != null">
-        hall_capacity = #{hallCapacity,jdbcType=INTEGER},
-      </if>
-      <if test="deleteMark != null">
-        delete_mark = #{deleteMark,jdbcType=BIT},
-      </if>
-    </set>
-    where id = #{id,jdbcType=BIGINT}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.movie.moviedata.entity.Hall">
-    <!--@mbg.generated-->
-    update hall
-    set cinema_id = #{cinemaId,jdbcType=BIGINT},
-      hall_type = #{hallType,jdbcType=BIGINT},
-      hall_name = #{hallName,jdbcType=VARCHAR},
-      hall_capacity = #{hallCapacity,jdbcType=INTEGER},
-      delete_mark = #{deleteMark,jdbcType=BIT}
-    where id = #{id,jdbcType=BIGINT}
-  </update>
-  <update id="updateBatch" parameterType="java.util.List">
-    <!--@mbg.generated-->
-    update hall
-    <trim prefix="set" suffixOverrides=",">
-      <trim prefix="cinema_id = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          when id = #{item.id,jdbcType=BIGINT} then #{item.cinemaId,jdbcType=BIGINT}
-        </foreach>
-      </trim>
-      <trim prefix="hall_type = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          when id = #{item.id,jdbcType=BIGINT} then #{item.hallType,jdbcType=BIGINT}
-        </foreach>
-      </trim>
-      <trim prefix="hall_name = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          when id = #{item.id,jdbcType=BIGINT} then #{item.hallName,jdbcType=VARCHAR}
-        </foreach>
-      </trim>
-      <trim prefix="hall_capacity = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          when id = #{item.id,jdbcType=BIGINT} then #{item.hallCapacity,jdbcType=INTEGER}
-        </foreach>
-      </trim>
-      <trim prefix="delete_mark = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          when id = #{item.id,jdbcType=BIGINT} then #{item.deleteMark,jdbcType=BIT}
-        </foreach>
-      </trim>
-    </trim>
-    where id in
-    <foreach close=")" collection="list" item="item" open="(" separator=", ">
-      #{item.id,jdbcType=BIGINT}
-    </foreach>
-  </update>
-  <update id="updateBatchSelective" parameterType="java.util.List">
-    <!--@mbg.generated-->
-    update hall
-    <trim prefix="set" suffixOverrides=",">
-      <trim prefix="cinema_id = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          <if test="item.cinemaId != null">
-            when id = #{item.id,jdbcType=BIGINT} then #{item.cinemaId,jdbcType=BIGINT}
-          </if>
-        </foreach>
-      </trim>
-      <trim prefix="hall_type = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          <if test="item.hallType != null">
-            when id = #{item.id,jdbcType=BIGINT} then #{item.hallType,jdbcType=BIGINT}
-          </if>
-        </foreach>
-      </trim>
-      <trim prefix="hall_name = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          <if test="item.hallName != null">
-            when id = #{item.id,jdbcType=BIGINT} then #{item.hallName,jdbcType=VARCHAR}
-          </if>
-        </foreach>
-      </trim>
-      <trim prefix="hall_capacity = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          <if test="item.hallCapacity != null">
-            when id = #{item.id,jdbcType=BIGINT} then #{item.hallCapacity,jdbcType=INTEGER}
-          </if>
-        </foreach>
-      </trim>
-      <trim prefix="delete_mark = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          <if test="item.deleteMark != null">
-            when id = #{item.id,jdbcType=BIGINT} then #{item.deleteMark,jdbcType=BIT}
-          </if>
-        </foreach>
-      </trim>
-    </trim>
-    where id in
-    <foreach close=")" collection="list" item="item" open="(" separator=", ">
-      #{item.id,jdbcType=BIGINT}
-    </foreach>
-  </update>
-  <insert id="batchInsert" parameterType="map">
-    <!--@mbg.generated-->
-    insert into hall
-    (id, cinema_id, hall_type, hall_name, hall_capacity, delete_mark)
-    values
-    <foreach collection="list" item="item" separator=",">
-      (#{item.id,jdbcType=BIGINT}, #{item.cinemaId,jdbcType=BIGINT}, #{item.hallType,jdbcType=BIGINT}, 
-        #{item.hallName,jdbcType=VARCHAR}, #{item.hallCapacity,jdbcType=INTEGER}, #{item.deleteMark,jdbcType=BIT}
+    <resultMap id="BaseResultMap" type="com.movie.moviedata.entity.Hall">
+        <!--@mbg.generated-->
+        <!--@Table hall-->
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="cinema_id" jdbcType="BIGINT" property="cinemaId"/>
+        <result column="hall_type" jdbcType="BIGINT" property="hallType"/>
+        <result column="hall_name" jdbcType="VARCHAR" property="hallName"/>
+        <result column="hall_capacity" jdbcType="INTEGER" property="hallCapacity"/>
+        <result column="delete_mark" jdbcType="BIT" property="deleteMark"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, cinema_id, hall_type, hall_name, hall_capacity, delete_mark
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from hall
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        <!--@mbg.generated-->
+        delete from hall
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" parameterType="com.movie.moviedata.entity.Hall">
+        <!--@mbg.generated-->
+        insert into hall (id, cinema_id, hall_type,
+        hall_name, hall_capacity, delete_mark
         )
-    </foreach>
-  </insert>
-  <insert id="insertOrUpdate" parameterType="com.movie.moviedata.entity.Hall">
-    <!--@mbg.generated-->
-    insert into hall
-    (id, cinema_id, hall_type, hall_name, hall_capacity, delete_mark)
-    values
-    (#{id,jdbcType=BIGINT}, #{cinemaId,jdbcType=BIGINT}, #{hallType,jdbcType=BIGINT}, 
-      #{hallName,jdbcType=VARCHAR}, #{hallCapacity,jdbcType=INTEGER}, #{deleteMark,jdbcType=BIT}
-      )
-    on duplicate key update 
-    id = #{id,jdbcType=BIGINT}, 
-    cinema_id = #{cinemaId,jdbcType=BIGINT}, 
-    hall_type = #{hallType,jdbcType=BIGINT}, 
-    hall_name = #{hallName,jdbcType=VARCHAR}, 
-    hall_capacity = #{hallCapacity,jdbcType=INTEGER}, 
-    delete_mark = #{deleteMark,jdbcType=BIT}
-  </insert>
-  <insert id="insertOrUpdateSelective" parameterType="com.movie.moviedata.entity.Hall">
-    <!--@mbg.generated-->
-    insert into hall
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      <if test="cinemaId != null">
-        cinema_id,
-      </if>
-      <if test="hallType != null">
-        hall_type,
-      </if>
-      <if test="hallName != null">
-        hall_name,
-      </if>
-      <if test="hallCapacity != null">
-        hall_capacity,
-      </if>
-      <if test="deleteMark != null">
-        delete_mark,
-      </if>
-    </trim>
-    values
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=BIGINT},
-      </if>
-      <if test="cinemaId != null">
-        #{cinemaId,jdbcType=BIGINT},
-      </if>
-      <if test="hallType != null">
-        #{hallType,jdbcType=BIGINT},
-      </if>
-      <if test="hallName != null">
-        #{hallName,jdbcType=VARCHAR},
-      </if>
-      <if test="hallCapacity != null">
-        #{hallCapacity,jdbcType=INTEGER},
-      </if>
-      <if test="deleteMark != null">
-        #{deleteMark,jdbcType=BIT},
-      </if>
-    </trim>
-    on duplicate key update 
-    <trim suffixOverrides=",">
-      <if test="id != null">
-        id = #{id,jdbcType=BIGINT},
-      </if>
-      <if test="cinemaId != null">
-        cinema_id = #{cinemaId,jdbcType=BIGINT},
-      </if>
-      <if test="hallType != null">
+        values (#{id,jdbcType=BIGINT}, #{cinemaId,jdbcType=BIGINT}, #{hallType,jdbcType=BIGINT},
+        #{hallName,jdbcType=VARCHAR}, #{hallCapacity,jdbcType=INTEGER}, #{deleteMark,jdbcType=BIT}
+        )
+    </insert>
+    <insert id="insertSelective" parameterType="com.movie.moviedata.entity.Hall">
+        <!--@mbg.generated-->
+        insert into hall
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="cinemaId != null">
+                cinema_id,
+            </if>
+            <if test="hallType != null">
+                hall_type,
+            </if>
+            <if test="hallName != null and hallName != ''">
+                hall_name,
+            </if>
+            <if test="hallCapacity != null">
+                hall_capacity,
+            </if>
+            <if test="deleteMark != null">
+                delete_mark,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="cinemaId != null">
+                #{cinemaId,jdbcType=BIGINT},
+            </if>
+            <if test="hallType != null">
+                #{hallType,jdbcType=BIGINT},
+            </if>
+            <if test="hallName != null and hallName != ''">
+                #{hallName,jdbcType=VARCHAR},
+            </if>
+            <if test="hallCapacity != null">
+                #{hallCapacity,jdbcType=INTEGER},
+            </if>
+            <if test="deleteMark != null">
+                #{deleteMark,jdbcType=BIT},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.movie.moviedata.entity.Hall">
+        <!--@mbg.generated-->
+        update hall
+        <set>
+            <if test="cinemaId != null">
+                cinema_id = #{cinemaId,jdbcType=BIGINT},
+            </if>
+            <if test="hallType != null">
+                hall_type = #{hallType,jdbcType=BIGINT},
+            </if>
+            <if test="hallName != null and hallName != ''">
+                hall_name = #{hallName,jdbcType=VARCHAR},
+            </if>
+            <if test="hallCapacity != null">
+                hall_capacity = #{hallCapacity,jdbcType=INTEGER},
+            </if>
+            <if test="deleteMark != null">
+                delete_mark = #{deleteMark,jdbcType=BIT},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.movie.moviedata.entity.Hall">
+        <!--@mbg.generated-->
+        update hall
+        set cinema_id = #{cinemaId,jdbcType=BIGINT},
         hall_type = #{hallType,jdbcType=BIGINT},
-      </if>
-      <if test="hallName != null">
         hall_name = #{hallName,jdbcType=VARCHAR},
-      </if>
-      <if test="hallCapacity != null">
         hall_capacity = #{hallCapacity,jdbcType=INTEGER},
-      </if>
-      <if test="deleteMark != null">
-        delete_mark = #{deleteMark,jdbcType=BIT},
-      </if>
-    </trim>
-  </insert>
+        delete_mark = #{deleteMark,jdbcType=BIT}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateBatch" parameterType="java.util.List">
+        <!--@mbg.generated-->
+        update hall
+        <trim prefix="set" suffixOverrides=",">
+            <trim prefix="cinema_id = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.cinemaId,jdbcType=BIGINT}
+                </foreach>
+            </trim>
+            <trim prefix="hall_type = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.hallType,jdbcType=BIGINT}
+                </foreach>
+            </trim>
+            <trim prefix="hall_name = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.hallName,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="hall_capacity = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.hallCapacity,jdbcType=INTEGER}
+                </foreach>
+            </trim>
+            <trim prefix="delete_mark = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.deleteMark,jdbcType=BIT}
+                </foreach>
+            </trim>
+        </trim>
+        where id in
+        <foreach close=")" collection="list" item="item" open="(" separator=", ">
+            #{item.id,jdbcType=BIGINT}
+        </foreach>
+    </update>
+    <update id="updateBatchSelective" parameterType="java.util.List">
+        <!--@mbg.generated-->
+        update hall
+        <trim prefix="set" suffixOverrides=",">
+            <trim prefix="cinema_id = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.cinemaId != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.cinemaId,jdbcType=BIGINT}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="hall_type = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.hallType != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.hallType,jdbcType=BIGINT}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="hall_name = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.hallName != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.hallName,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="hall_capacity = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.hallCapacity != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.hallCapacity,jdbcType=INTEGER}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="delete_mark = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.deleteMark != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.deleteMark,jdbcType=BIT}
+                    </if>
+                </foreach>
+            </trim>
+        </trim>
+        where id in
+        <foreach close=")" collection="list" item="item" open="(" separator=", ">
+            #{item.id,jdbcType=BIGINT}
+        </foreach>
+    </update>
+    <insert id="batchInsert" parameterType="map">
+        <!--@mbg.generated-->
+        insert into hall
+        (id, cinema_id, hall_type, hall_name, hall_capacity, delete_mark)
+        values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.id,jdbcType=BIGINT}, #{item.cinemaId,jdbcType=BIGINT}, #{item.hallType,jdbcType=BIGINT},
+            #{item.hallName,jdbcType=VARCHAR}, #{item.hallCapacity,jdbcType=INTEGER}, #{item.deleteMark,jdbcType=BIT}
+            )
+        </foreach>
+    </insert>
+    <insert id="insertOrUpdate" parameterType="com.movie.moviedata.entity.Hall">
+        <!--@mbg.generated-->
+        insert into hall
+        (id, cinema_id, hall_type, hall_name, hall_capacity, delete_mark)
+        values
+        (#{id,jdbcType=BIGINT}, #{cinemaId,jdbcType=BIGINT}, #{hallType,jdbcType=BIGINT},
+        #{hallName,jdbcType=VARCHAR}, #{hallCapacity,jdbcType=INTEGER}, #{deleteMark,jdbcType=BIT}
+        )
+        on duplicate key update
+        id = #{id,jdbcType=BIGINT},
+        cinema_id = #{cinemaId,jdbcType=BIGINT},
+        hall_type = #{hallType,jdbcType=BIGINT},
+        hall_name = #{hallName,jdbcType=VARCHAR},
+        hall_capacity = #{hallCapacity,jdbcType=INTEGER},
+        delete_mark = #{deleteMark,jdbcType=BIT}
+    </insert>
+    <insert id="insertOrUpdateSelective" parameterType="com.movie.moviedata.entity.Hall">
+        <!--@mbg.generated-->
+        insert into hall
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="cinemaId != null">
+                cinema_id,
+            </if>
+            <if test="hallType != null">
+                hall_type,
+            </if>
+            <if test="hallName != null">
+                hall_name,
+            </if>
+            <if test="hallCapacity != null">
+                hall_capacity,
+            </if>
+            <if test="deleteMark != null">
+                delete_mark,
+            </if>
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="cinemaId != null">
+                #{cinemaId,jdbcType=BIGINT},
+            </if>
+            <if test="hallType != null">
+                #{hallType,jdbcType=BIGINT},
+            </if>
+            <if test="hallName != null">
+                #{hallName,jdbcType=VARCHAR},
+            </if>
+            <if test="hallCapacity != null">
+                #{hallCapacity,jdbcType=INTEGER},
+            </if>
+            <if test="deleteMark != null">
+                #{deleteMark,jdbcType=BIT},
+            </if>
+        </trim>
+        on duplicate key update
+        <trim suffixOverrides=",">
+            <if test="id != null">
+                id = #{id,jdbcType=BIGINT},
+            </if>
+            <if test="cinemaId != null">
+                cinema_id = #{cinemaId,jdbcType=BIGINT},
+            </if>
+            <if test="hallType != null">
+                hall_type = #{hallType,jdbcType=BIGINT},
+            </if>
+            <if test="hallName != null">
+                hall_name = #{hallName,jdbcType=VARCHAR},
+            </if>
+            <if test="hallCapacity != null">
+                hall_capacity = #{hallCapacity,jdbcType=INTEGER},
+            </if>
+            <if test="deleteMark != null">
+                delete_mark = #{deleteMark,jdbcType=BIT},
+            </if>
+        </trim>
+    </insert>
+    <select id="selectByParam" resultType="com.movie.moviedata.dto.HallDto">
+    SELECT
+    a.id hallId,a.hall_name hallName,b.hall_name hallType,c.cinema_name cinemaName,a.hall_capacity hallCapacity
+    FROM hall a LEFT JOIN hall_type b ON a.hall_type = b.hall_id
+    LEFT JOIN cinema c ON a.cinema_id = c.id
+    WHERE
+    a.delete_mark=false;
+  </select>
 </mapper>

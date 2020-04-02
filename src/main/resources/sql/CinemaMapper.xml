@@ -315,4 +315,12 @@
         delete_mark=false
         and cinema_type = #{cinemaType}
     </select>
+    <select id="selectCinemaMovie" resultType="com.movie.moviedata.dto.MovieDto">
+        SELECT
+        b.movie_id movieId,b.movie_picture moviePicture,b.movie_cn_name movieCnName
+        FROM cinema_movie_releation a LEFT JOIN movie b ON a.movie_id = b.movie_id
+        WHERE
+        a.delete_mark=false
+        AND a.cinema_type=#{cinemaTypeId}
+    </select>
 </mapper>
