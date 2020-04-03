@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.movie.moviedata.dto.ScheduleDto;
 import com.movie.moviedata.entity.Schedule;
+import com.movie.moviedata.param.SelectScheduleParam;
 
 @Mapper
 public interface ScheduleMapper {
@@ -32,5 +33,5 @@ public interface ScheduleMapper {
     
     int batchInsert(@Param("list") List<Schedule> list);
     
-    List<ScheduleDto> selectSchedule();
+    List<ScheduleDto> selectSchedule(SelectScheduleParam param);
 }
