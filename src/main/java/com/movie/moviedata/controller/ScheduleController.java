@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.movie.base.utils.Page;
 import com.movie.moviedata.entity.Schedule;
-import com.movie.moviedata.param.SelectScheduleParam;
 import com.movie.moviedata.service.ScheduleService;
 
 @Controller
@@ -25,8 +24,8 @@ public class ScheduleController {
     
     @ResponseBody
     @GetMapping("all")
-    public Object selectSchedule(SelectScheduleParam param, Page page) {
-        return scheduleService.selectSchedule(param, page);
+    public Object selectSchedule(Page page) {
+        return scheduleService.selectSchedule(page);
     }
     
 }

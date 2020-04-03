@@ -13,7 +13,6 @@ import com.movie.base.utils.Page;
 import com.movie.moviedata.dao.ScheduleMapper;
 import com.movie.moviedata.dto.ScheduleDto;
 import com.movie.moviedata.entity.Schedule;
-import com.movie.moviedata.param.SelectScheduleParam;
 import com.movie.moviedata.service.ScheduleService;
 
 @Service
@@ -78,9 +77,9 @@ public class ScheduleServiceImpl implements ScheduleService {
     }
     
     @Override
-    public Page selectSchedule(SelectScheduleParam param, Page page) {
+    public Page selectSchedule(Page page) {
         PageHelper.startPage(page);
-        List<ScheduleDto> scheduleDtos = scheduleMapper.selectSchedule(param);
+        List<ScheduleDto> scheduleDtos = scheduleMapper.selectSchedule();
         page.setList(scheduleDtos);
         BeanUtil.copyProperties(new PageInfo(scheduleDtos), page);
         return page;
