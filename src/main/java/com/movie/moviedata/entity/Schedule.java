@@ -1,10 +1,8 @@
 package com.movie.moviedata.entity;
 
-import lombok.Builder;
 import lombok.Data;
 
 @Data
-@Builder
 public class Schedule {
     /**
      * schedule_id
@@ -41,7 +39,7 @@ public class Schedule {
      */
     private Integer scheduleState;
 
-    public static ScheduleBuilder builder() {
-        return new ScheduleBuilder();
+    public static com.movie.moviedata.entity.Schedule.ScheduleBuilder builder() {
+        return new com.movie.moviedata.entity.Schedule.ScheduleBuilder();
     }
 }

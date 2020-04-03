@@ -1,339 +1,359 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.movie.moviedata.dao.ScheduleMapper">
-  <resultMap id="BaseResultMap" type="com.movie.moviedata.entity.Schedule">
-    <!--@mbg.generated-->
-    <!--@Table schedule-->
-    <id column="schedule_id" jdbcType="BIGINT" property="scheduleId" />
-    <result column="hall_id" jdbcType="BIGINT" property="hallId" />
-    <result column="movie_id" jdbcType="BIGINT" property="movieId" />
-    <result column="schedule_startTime" jdbcType="VARCHAR" property="scheduleStarttime" />
-    <result column="schedule_price" jdbcType="INTEGER" property="schedulePrice" />
-    <result column="schedule_remain" jdbcType="INTEGER" property="scheduleRemain" />
-    <result column="schedule_state" jdbcType="INTEGER" property="scheduleState" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    <!--@mbg.generated-->
-    schedule_id, hall_id, movie_id, schedule_startTime, schedule_price, schedule_remain, 
-    schedule_state
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    <!--@mbg.generated-->
-    select 
-    <include refid="Base_Column_List" />
-    from schedule
-    where schedule_id = #{scheduleId,jdbcType=BIGINT}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    <!--@mbg.generated-->
-    delete from schedule
-    where schedule_id = #{scheduleId,jdbcType=BIGINT}
-  </delete>
-  <insert id="insert" keyColumn="schedule_id" keyProperty="scheduleId" parameterType="com.movie.moviedata.entity.Schedule" useGeneratedKeys="true">
-    <!--@mbg.generated-->
-    insert into schedule (hall_id, movie_id, schedule_startTime, 
-      schedule_price, schedule_remain, schedule_state
-      )
-    values (#{hallId,jdbcType=BIGINT}, #{movieId,jdbcType=BIGINT}, #{scheduleStarttime,jdbcType=VARCHAR}, 
-      #{schedulePrice,jdbcType=INTEGER}, #{scheduleRemain,jdbcType=INTEGER}, #{scheduleState,jdbcType=INTEGER}
-      )
-  </insert>
-  <insert id="insertSelective" keyColumn="schedule_id" keyProperty="scheduleId" parameterType="com.movie.moviedata.entity.Schedule" useGeneratedKeys="true">
-    <!--@mbg.generated-->
-    insert into schedule
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="hallId != null">
-        hall_id,
-      </if>
-      <if test="movieId != null">
-        movie_id,
-      </if>
-      <if test="scheduleStarttime != null and scheduleStarttime != ''">
-        schedule_startTime,
-      </if>
-      <if test="schedulePrice != null">
-        schedule_price,
-      </if>
-      <if test="scheduleRemain != null">
-        schedule_remain,
-      </if>
-      <if test="scheduleState != null">
-        schedule_state,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="hallId != null">
-        #{hallId,jdbcType=BIGINT},
-      </if>
-      <if test="movieId != null">
-        #{movieId,jdbcType=BIGINT},
-      </if>
-      <if test="scheduleStarttime != null and scheduleStarttime != ''">
-        #{scheduleStarttime,jdbcType=VARCHAR},
-      </if>
-      <if test="schedulePrice != null">
-        #{schedulePrice,jdbcType=INTEGER},
-      </if>
-      <if test="scheduleRemain != null">
-        #{scheduleRemain,jdbcType=INTEGER},
-      </if>
-      <if test="scheduleState != null">
-        #{scheduleState,jdbcType=INTEGER},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.movie.moviedata.entity.Schedule">
-    <!--@mbg.generated-->
-    update schedule
-    <set>
-      <if test="hallId != null">
-        hall_id = #{hallId,jdbcType=BIGINT},
-      </if>
-      <if test="movieId != null">
+    <resultMap id="BaseResultMap" type="com.movie.moviedata.entity.Schedule">
+        <!--@mbg.generated-->
+        <!--@Table schedule-->
+        <id column="schedule_id" jdbcType="BIGINT" property="scheduleId"/>
+        <result column="hall_id" jdbcType="BIGINT" property="hallId"/>
+        <result column="movie_id" jdbcType="BIGINT" property="movieId"/>
+        <result column="schedule_startTime" jdbcType="VARCHAR" property="scheduleStarttime"/>
+        <result column="schedule_price" jdbcType="INTEGER" property="schedulePrice"/>
+        <result column="schedule_remain" jdbcType="INTEGER" property="scheduleRemain"/>
+        <result column="schedule_state" jdbcType="INTEGER" property="scheduleState"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        schedule_id, hall_id, movie_id, schedule_startTime, schedule_price, schedule_remain,
+        schedule_state
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from schedule
+        where schedule_id = #{scheduleId,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        <!--@mbg.generated-->
+        delete from schedule
+        where schedule_id = #{scheduleId,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" keyColumn="schedule_id" keyProperty="scheduleId"
+            parameterType="com.movie.moviedata.entity.Schedule" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into schedule (hall_id, movie_id, schedule_startTime,
+        schedule_price, schedule_remain, schedule_state
+        )
+        values (#{hallId,jdbcType=BIGINT}, #{movieId,jdbcType=BIGINT}, #{scheduleStarttime,jdbcType=VARCHAR},
+        #{schedulePrice,jdbcType=INTEGER}, #{scheduleRemain,jdbcType=INTEGER}, #{scheduleState,jdbcType=INTEGER}
+        )
+    </insert>
+    <insert id="insertSelective" keyColumn="schedule_id" keyProperty="scheduleId"
+            parameterType="com.movie.moviedata.entity.Schedule" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into schedule
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="hallId != null">
+                hall_id,
+            </if>
+            <if test="movieId != null">
+                movie_id,
+            </if>
+            <if test="scheduleStarttime != null and scheduleStarttime != ''">
+                schedule_startTime,
+            </if>
+            <if test="schedulePrice != null">
+                schedule_price,
+            </if>
+            <if test="scheduleRemain != null">
+                schedule_remain,
+            </if>
+            <if test="scheduleState != null">
+                schedule_state,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="hallId != null">
+                #{hallId,jdbcType=BIGINT},
+            </if>
+            <if test="movieId != null">
+                #{movieId,jdbcType=BIGINT},
+            </if>
+            <if test="scheduleStarttime != null and scheduleStarttime != ''">
+                #{scheduleStarttime,jdbcType=VARCHAR},
+            </if>
+            <if test="schedulePrice != null">
+                #{schedulePrice,jdbcType=INTEGER},
+            </if>
+            <if test="scheduleRemain != null">
+                #{scheduleRemain,jdbcType=INTEGER},
+            </if>
+            <if test="scheduleState != null">
+                #{scheduleState,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.movie.moviedata.entity.Schedule">
+        <!--@mbg.generated-->
+        update schedule
+        <set>
+            <if test="hallId != null">
+                hall_id = #{hallId,jdbcType=BIGINT},
+            </if>
+            <if test="movieId != null">
+                movie_id = #{movieId,jdbcType=BIGINT},
+            </if>
+            <if test="scheduleStarttime != null and scheduleStarttime != ''">
+                schedule_startTime = #{scheduleStarttime,jdbcType=VARCHAR},
+            </if>
+            <if test="schedulePrice != null">
+                schedule_price = #{schedulePrice,jdbcType=INTEGER},
+            </if>
+            <if test="scheduleRemain != null">
+                schedule_remain = #{scheduleRemain,jdbcType=INTEGER},
+            </if>
+            <if test="scheduleState != null">
+                schedule_state = #{scheduleState,jdbcType=INTEGER},
+            </if>
+        </set>
+        where schedule_id = #{scheduleId,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.movie.moviedata.entity.Schedule">
+        <!--@mbg.generated-->
+        update schedule
+        set hall_id = #{hallId,jdbcType=BIGINT},
         movie_id = #{movieId,jdbcType=BIGINT},
-      </if>
-      <if test="scheduleStarttime != null and scheduleStarttime != ''">
         schedule_startTime = #{scheduleStarttime,jdbcType=VARCHAR},
-      </if>
-      <if test="schedulePrice != null">
         schedule_price = #{schedulePrice,jdbcType=INTEGER},
-      </if>
-      <if test="scheduleRemain != null">
         schedule_remain = #{scheduleRemain,jdbcType=INTEGER},
-      </if>
-      <if test="scheduleState != null">
-        schedule_state = #{scheduleState,jdbcType=INTEGER},
-      </if>
-    </set>
-    where schedule_id = #{scheduleId,jdbcType=BIGINT}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.movie.moviedata.entity.Schedule">
-    <!--@mbg.generated-->
-    update schedule
-    set hall_id = #{hallId,jdbcType=BIGINT},
-      movie_id = #{movieId,jdbcType=BIGINT},
-      schedule_startTime = #{scheduleStarttime,jdbcType=VARCHAR},
-      schedule_price = #{schedulePrice,jdbcType=INTEGER},
-      schedule_remain = #{scheduleRemain,jdbcType=INTEGER},
-      schedule_state = #{scheduleState,jdbcType=INTEGER}
-    where schedule_id = #{scheduleId,jdbcType=BIGINT}
-  </update>
-  <update id="updateBatch" parameterType="java.util.List">
-    <!--@mbg.generated-->
-    update schedule
-    <trim prefix="set" suffixOverrides=",">
-      <trim prefix="hall_id = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          when schedule_id = #{item.scheduleId,jdbcType=BIGINT} then #{item.hallId,jdbcType=BIGINT}
+        schedule_state = #{scheduleState,jdbcType=INTEGER}
+        where schedule_id = #{scheduleId,jdbcType=BIGINT}
+    </update>
+    <update id="updateBatch" parameterType="java.util.List">
+        <!--@mbg.generated-->
+        update schedule
+        <trim prefix="set" suffixOverrides=",">
+            <trim prefix="hall_id = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when schedule_id = #{item.scheduleId,jdbcType=BIGINT} then #{item.hallId,jdbcType=BIGINT}
+                </foreach>
+            </trim>
+            <trim prefix="movie_id = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when schedule_id = #{item.scheduleId,jdbcType=BIGINT} then #{item.movieId,jdbcType=BIGINT}
+                </foreach>
+            </trim>
+            <trim prefix="schedule_startTime = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when schedule_id = #{item.scheduleId,jdbcType=BIGINT} then
+                    #{item.scheduleStarttime,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="schedule_price = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when schedule_id = #{item.scheduleId,jdbcType=BIGINT} then #{item.schedulePrice,jdbcType=INTEGER}
+                </foreach>
+            </trim>
+            <trim prefix="schedule_remain = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when schedule_id = #{item.scheduleId,jdbcType=BIGINT} then #{item.scheduleRemain,jdbcType=INTEGER}
+                </foreach>
+            </trim>
+            <trim prefix="schedule_state = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when schedule_id = #{item.scheduleId,jdbcType=BIGINT} then #{item.scheduleState,jdbcType=INTEGER}
+                </foreach>
+            </trim>
+        </trim>
+        where schedule_id in
+        <foreach close=")" collection="list" item="item" open="(" separator=", ">
+            #{item.scheduleId,jdbcType=BIGINT}
         </foreach>
-      </trim>
-      <trim prefix="movie_id = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          when schedule_id = #{item.scheduleId,jdbcType=BIGINT} then #{item.movieId,jdbcType=BIGINT}
+    </update>
+    <update id="updateBatchSelective" parameterType="java.util.List">
+        <!--@mbg.generated-->
+        update schedule
+        <trim prefix="set" suffixOverrides=",">
+            <trim prefix="hall_id = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.hallId != null">
+                        when schedule_id = #{item.scheduleId,jdbcType=BIGINT} then #{item.hallId,jdbcType=BIGINT}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="movie_id = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.movieId != null">
+                        when schedule_id = #{item.scheduleId,jdbcType=BIGINT} then #{item.movieId,jdbcType=BIGINT}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="schedule_startTime = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.scheduleStarttime != null">
+                        when schedule_id = #{item.scheduleId,jdbcType=BIGINT} then
+                        #{item.scheduleStarttime,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="schedule_price = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.schedulePrice != null">
+                        when schedule_id = #{item.scheduleId,jdbcType=BIGINT} then
+                        #{item.schedulePrice,jdbcType=INTEGER}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="schedule_remain = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.scheduleRemain != null">
+                        when schedule_id = #{item.scheduleId,jdbcType=BIGINT} then
+                        #{item.scheduleRemain,jdbcType=INTEGER}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="schedule_state = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.scheduleState != null">
+                        when schedule_id = #{item.scheduleId,jdbcType=BIGINT} then
+                        #{item.scheduleState,jdbcType=INTEGER}
+                    </if>
+                </foreach>
+            </trim>
+        </trim>
+        where schedule_id in
+        <foreach close=")" collection="list" item="item" open="(" separator=", ">
+            #{item.scheduleId,jdbcType=BIGINT}
         </foreach>
-      </trim>
-      <trim prefix="schedule_startTime = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          when schedule_id = #{item.scheduleId,jdbcType=BIGINT} then #{item.scheduleStarttime,jdbcType=VARCHAR}
+    </update>
+    <insert id="batchInsert" keyColumn="schedule_id" keyProperty="scheduleId" parameterType="map"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into schedule
+        (hall_id, movie_id, schedule_startTime, schedule_price, schedule_remain, schedule_state
+        )
+        values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.hallId,jdbcType=BIGINT}, #{item.movieId,jdbcType=BIGINT},
+            #{item.scheduleStarttime,jdbcType=VARCHAR},
+            #{item.schedulePrice,jdbcType=INTEGER}, #{item.scheduleRemain,jdbcType=INTEGER},
+            #{item.scheduleState,jdbcType=INTEGER})
         </foreach>
-      </trim>
-      <trim prefix="schedule_price = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          when schedule_id = #{item.scheduleId,jdbcType=BIGINT} then #{item.schedulePrice,jdbcType=INTEGER}
-        </foreach>
-      </trim>
-      <trim prefix="schedule_remain = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          when schedule_id = #{item.scheduleId,jdbcType=BIGINT} then #{item.scheduleRemain,jdbcType=INTEGER}
-        </foreach>
-      </trim>
-      <trim prefix="schedule_state = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          when schedule_id = #{item.scheduleId,jdbcType=BIGINT} then #{item.scheduleState,jdbcType=INTEGER}
-        </foreach>
-      </trim>
-    </trim>
-    where schedule_id in
-    <foreach close=")" collection="list" item="item" open="(" separator=", ">
-      #{item.scheduleId,jdbcType=BIGINT}
-    </foreach>
-  </update>
-  <update id="updateBatchSelective" parameterType="java.util.List">
-    <!--@mbg.generated-->
-    update schedule
-    <trim prefix="set" suffixOverrides=",">
-      <trim prefix="hall_id = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          <if test="item.hallId != null">
-            when schedule_id = #{item.scheduleId,jdbcType=BIGINT} then #{item.hallId,jdbcType=BIGINT}
-          </if>
-        </foreach>
-      </trim>
-      <trim prefix="movie_id = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          <if test="item.movieId != null">
-            when schedule_id = #{item.scheduleId,jdbcType=BIGINT} then #{item.movieId,jdbcType=BIGINT}
-          </if>
-        </foreach>
-      </trim>
-      <trim prefix="schedule_startTime = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          <if test="item.scheduleStarttime != null">
-            when schedule_id = #{item.scheduleId,jdbcType=BIGINT} then #{item.scheduleStarttime,jdbcType=VARCHAR}
-          </if>
-        </foreach>
-      </trim>
-      <trim prefix="schedule_price = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          <if test="item.schedulePrice != null">
-            when schedule_id = #{item.scheduleId,jdbcType=BIGINT} then #{item.schedulePrice,jdbcType=INTEGER}
-          </if>
-        </foreach>
-      </trim>
-      <trim prefix="schedule_remain = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          <if test="item.scheduleRemain != null">
-            when schedule_id = #{item.scheduleId,jdbcType=BIGINT} then #{item.scheduleRemain,jdbcType=INTEGER}
-          </if>
-        </foreach>
-      </trim>
-      <trim prefix="schedule_state = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          <if test="item.scheduleState != null">
-            when schedule_id = #{item.scheduleId,jdbcType=BIGINT} then #{item.scheduleState,jdbcType=INTEGER}
-          </if>
-        </foreach>
-      </trim>
-    </trim>
-    where schedule_id in
-    <foreach close=")" collection="list" item="item" open="(" separator=", ">
-      #{item.scheduleId,jdbcType=BIGINT}
-    </foreach>
-  </update>
-  <insert id="batchInsert" keyColumn="schedule_id" keyProperty="scheduleId" parameterType="map" useGeneratedKeys="true">
-    <!--@mbg.generated-->
-    insert into schedule
-    (hall_id, movie_id, schedule_startTime, schedule_price, schedule_remain, schedule_state
-      )
-    values
-    <foreach collection="list" item="item" separator=",">
-      (#{item.hallId,jdbcType=BIGINT}, #{item.movieId,jdbcType=BIGINT}, #{item.scheduleStarttime,jdbcType=VARCHAR}, 
-        #{item.schedulePrice,jdbcType=INTEGER}, #{item.scheduleRemain,jdbcType=INTEGER}, 
-        #{item.scheduleState,jdbcType=INTEGER})
-    </foreach>
-  </insert>
-  <insert id="insertOrUpdate" keyColumn="schedule_id" keyProperty="scheduleId" parameterType="com.movie.moviedata.entity.Schedule" useGeneratedKeys="true">
-    <!--@mbg.generated-->
-    insert into schedule
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="scheduleId != null">
-        schedule_id,
-      </if>
-      hall_id,
-      movie_id,
-      schedule_startTime,
-      schedule_price,
-      schedule_remain,
-      schedule_state,
-    </trim>
-    values
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="scheduleId != null">
-        #{scheduleId,jdbcType=BIGINT},
-      </if>
-      #{hallId,jdbcType=BIGINT},
-      #{movieId,jdbcType=BIGINT},
-      #{scheduleStarttime,jdbcType=VARCHAR},
-      #{schedulePrice,jdbcType=INTEGER},
-      #{scheduleRemain,jdbcType=INTEGER},
-      #{scheduleState,jdbcType=INTEGER},
-    </trim>
-    on duplicate key update 
-    <trim suffixOverrides=",">
-      <if test="scheduleId != null">
-        schedule_id = #{scheduleId,jdbcType=BIGINT},
-      </if>
-      hall_id = #{hallId,jdbcType=BIGINT},
-      movie_id = #{movieId,jdbcType=BIGINT},
-      schedule_startTime = #{scheduleStarttime,jdbcType=VARCHAR},
-      schedule_price = #{schedulePrice,jdbcType=INTEGER},
-      schedule_remain = #{scheduleRemain,jdbcType=INTEGER},
-      schedule_state = #{scheduleState,jdbcType=INTEGER},
-    </trim>
-  </insert>
-  <insert id="insertOrUpdateSelective" keyColumn="schedule_id" keyProperty="scheduleId" parameterType="com.movie.moviedata.entity.Schedule" useGeneratedKeys="true">
-    <!--@mbg.generated-->
-    insert into schedule
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="scheduleId != null">
-        schedule_id,
-      </if>
-      <if test="hallId != null">
-        hall_id,
-      </if>
-      <if test="movieId != null">
-        movie_id,
-      </if>
-      <if test="scheduleStarttime != null">
-        schedule_startTime,
-      </if>
-      <if test="schedulePrice != null">
-        schedule_price,
-      </if>
-      <if test="scheduleRemain != null">
-        schedule_remain,
-      </if>
-      <if test="scheduleState != null">
-        schedule_state,
-      </if>
-    </trim>
-    values
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="scheduleId != null">
-        #{scheduleId,jdbcType=BIGINT},
-      </if>
-      <if test="hallId != null">
-        #{hallId,jdbcType=BIGINT},
-      </if>
-      <if test="movieId != null">
-        #{movieId,jdbcType=BIGINT},
-      </if>
-      <if test="scheduleStarttime != null">
-        #{scheduleStarttime,jdbcType=VARCHAR},
-      </if>
-      <if test="schedulePrice != null">
-        #{schedulePrice,jdbcType=INTEGER},
-      </if>
-      <if test="scheduleRemain != null">
-        #{scheduleRemain,jdbcType=INTEGER},
-      </if>
-      <if test="scheduleState != null">
-        #{scheduleState,jdbcType=INTEGER},
-      </if>
-    </trim>
-    on duplicate key update 
-    <trim suffixOverrides=",">
-      <if test="scheduleId != null">
-        schedule_id = #{scheduleId,jdbcType=BIGINT},
-      </if>
-      <if test="hallId != null">
-        hall_id = #{hallId,jdbcType=BIGINT},
-      </if>
-      <if test="movieId != null">
-        movie_id = #{movieId,jdbcType=BIGINT},
-      </if>
-      <if test="scheduleStarttime != null">
-        schedule_startTime = #{scheduleStarttime,jdbcType=VARCHAR},
-      </if>
-      <if test="schedulePrice != null">
-        schedule_price = #{schedulePrice,jdbcType=INTEGER},
-      </if>
-      <if test="scheduleRemain != null">
-        schedule_remain = #{scheduleRemain,jdbcType=INTEGER},
-      </if>
-      <if test="scheduleState != null">
-        schedule_state = #{scheduleState,jdbcType=INTEGER},
-      </if>
-    </trim>
-  </insert>
+    </insert>
+    <insert id="insertOrUpdate" keyColumn="schedule_id" keyProperty="scheduleId"
+            parameterType="com.movie.moviedata.entity.Schedule" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into schedule
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="scheduleId != null">
+                schedule_id,
+            </if>
+            hall_id,
+            movie_id,
+            schedule_startTime,
+            schedule_price,
+            schedule_remain,
+            schedule_state,
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="scheduleId != null">
+                #{scheduleId,jdbcType=BIGINT},
+            </if>
+            #{hallId,jdbcType=BIGINT},
+            #{movieId,jdbcType=BIGINT},
+            #{scheduleStarttime,jdbcType=VARCHAR},
+            #{schedulePrice,jdbcType=INTEGER},
+            #{scheduleRemain,jdbcType=INTEGER},
+            #{scheduleState,jdbcType=INTEGER},
+        </trim>
+        on duplicate key update
+        <trim suffixOverrides=",">
+            <if test="scheduleId != null">
+                schedule_id = #{scheduleId,jdbcType=BIGINT},
+            </if>
+            hall_id = #{hallId,jdbcType=BIGINT},
+            movie_id = #{movieId,jdbcType=BIGINT},
+            schedule_startTime = #{scheduleStarttime,jdbcType=VARCHAR},
+            schedule_price = #{schedulePrice,jdbcType=INTEGER},
+            schedule_remain = #{scheduleRemain,jdbcType=INTEGER},
+            schedule_state = #{scheduleState,jdbcType=INTEGER},
+        </trim>
+    </insert>
+    <insert id="insertOrUpdateSelective" keyColumn="schedule_id" keyProperty="scheduleId"
+            parameterType="com.movie.moviedata.entity.Schedule" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into schedule
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="scheduleId != null">
+                schedule_id,
+            </if>
+            <if test="hallId != null">
+                hall_id,
+            </if>
+            <if test="movieId != null">
+                movie_id,
+            </if>
+            <if test="scheduleStarttime != null">
+                schedule_startTime,
+            </if>
+            <if test="schedulePrice != null">
+                schedule_price,
+            </if>
+            <if test="scheduleRemain != null">
+                schedule_remain,
+            </if>
+            <if test="scheduleState != null">
+                schedule_state,
+            </if>
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="scheduleId != null">
+                #{scheduleId,jdbcType=BIGINT},
+            </if>
+            <if test="hallId != null">
+                #{hallId,jdbcType=BIGINT},
+            </if>
+            <if test="movieId != null">
+                #{movieId,jdbcType=BIGINT},
+            </if>
+            <if test="scheduleStarttime != null">
+                #{scheduleStarttime,jdbcType=VARCHAR},
+            </if>
+            <if test="schedulePrice != null">
+                #{schedulePrice,jdbcType=INTEGER},
+            </if>
+            <if test="scheduleRemain != null">
+                #{scheduleRemain,jdbcType=INTEGER},
+            </if>
+            <if test="scheduleState != null">
+                #{scheduleState,jdbcType=INTEGER},
+            </if>
+        </trim>
+        on duplicate key update
+        <trim suffixOverrides=",">
+            <if test="scheduleId != null">
+                schedule_id = #{scheduleId,jdbcType=BIGINT},
+            </if>
+            <if test="hallId != null">
+                hall_id = #{hallId,jdbcType=BIGINT},
+            </if>
+            <if test="movieId != null">
+                movie_id = #{movieId,jdbcType=BIGINT},
+            </if>
+            <if test="scheduleStarttime != null">
+                schedule_startTime = #{scheduleStarttime,jdbcType=VARCHAR},
+            </if>
+            <if test="schedulePrice != null">
+                schedule_price = #{schedulePrice,jdbcType=INTEGER},
+            </if>
+            <if test="scheduleRemain != null">
+                schedule_remain = #{scheduleRemain,jdbcType=INTEGER},
+            </if>
+            <if test="scheduleState != null">
+                schedule_state = #{scheduleState,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <select id="selectSchedule" resultType="com.movie.moviedata.dto.ScheduleDto">
+        SELECT
+        a.id scheduleId,b.movie_cn_name movieName,c.hall_name hallName,d.cinema_name cinemaName,a.schedule_price price,a.schedule_startTime startTime,a.schedule_remain remainingSeat
+        FROM schedule a LEFT JOIN movie b ON a.movie_id = b.movie_id
+        LEFT JOIN hall c ON a.hall_id = c.id
+        LEFT JOIN cinema d ON c.cinema_id = d.id
+        WHERE
+        a.schedule_state=1
+    </select>
 </mapper>

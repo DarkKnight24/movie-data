@@ -1,10 +1,14 @@
 package com.movie.moviedata.dao;
 
-import com.movie.moviedata.entity.Schedule;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+
+import com.movie.moviedata.dto.ScheduleDto;
+import com.movie.moviedata.entity.Schedule;
+import com.movie.moviedata.param.SelectScheduleParam;
+
 @Mapper
 public interface ScheduleMapper {
     int deleteByPrimaryKey(Long scheduleId);
@@ -28,4 +32,6 @@ public interface ScheduleMapper {
     int updateBatchSelective(List<Schedule> list);
 
     int batchInsert(@Param("list") List<Schedule> list);
+
+    List<ScheduleDto> selectSchedule(SelectScheduleParam param);
 }

@@ -1,7 +1,10 @@
 package com.movie.moviedata.service;
 
 import java.util.List;
+
+import com.movie.base.utils.Page;
 import com.movie.moviedata.entity.Schedule;
+import com.movie.moviedata.param.SelectScheduleParam;
 
 public interface ScheduleService {
 
@@ -28,5 +31,7 @@ public interface ScheduleService {
 
     int batchInsert(List<Schedule> list);
 
+    Page selectSchedule(SelectScheduleParam param, Page page);
 }
+
 
