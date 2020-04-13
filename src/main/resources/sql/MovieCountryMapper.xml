@@ -7,7 +7,7 @@
         <id column="id" jdbcType="INTEGER" property="id"/>
         <result column="country_name" jdbcType="VARCHAR" property="countryName"/>
         <result column="delete_mark" jdbcType="BIT" property="deleteMark"/>
-        <result column="creat_time" jdbcType="TIMESTAMP" property="creatTime"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="creatTime"/>
     </resultMap>
     <sql id="Base_Column_List">
         <!--@mbg.generated-->
