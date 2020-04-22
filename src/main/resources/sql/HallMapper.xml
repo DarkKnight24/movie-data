@@ -286,11 +286,14 @@
         </trim>
     </insert>
     <select id="selectByParam" resultType="com.movie.moviedata.dto.HallDto">
-    SELECT
-    a.id hallId,a.hall_name hallName,b.hall_name hallType,c.cinema_name cinemaName,a.hall_capacity hallCapacity
-    FROM hall a LEFT JOIN hall_type b ON a.hall_type = b.hall_id
-    LEFT JOIN cinema c ON a.cinema_id = c.id
-    WHERE
-    a.delete_mark=false
-  </select>
+        SELECT
+        a.id hallId,a.hall_name hallName,b.hall_name hallType,c.cinema_name cinemaName,a.hall_capacity hallCapacity
+        FROM hall a LEFT JOIN hall_type b ON a.hall_type = b.hall_id
+        LEFT JOIN cinema c ON a.cinema_id = c.id
+        WHERE
+        a.delete_mark=false
+        <if test="cinemaId != null">
+            AND a.cinema_id = #{cinemaId}
+        </if>
+    </select>
 </mapper>

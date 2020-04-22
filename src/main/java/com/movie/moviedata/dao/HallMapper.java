@@ -34,4 +34,5 @@ public interface HallMapper {
     int batchInsert(@Param("list") List<Hall> list);
     
     List<HallDto> selectByParam(HallSelectParam param);
+    
 }

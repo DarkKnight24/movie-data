@@ -86,4 +86,9 @@ public class HallServiceImpl implements HallService {
         BeanUtil.copyProperties(pageInfo, page);
         return page;
     }
+    
+    @Override
+    public List<HallDto> selectByParam(HallSelectParam param) {
+        return hallMapper.selectByParam(param);
+    }
 }

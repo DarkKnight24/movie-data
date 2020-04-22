@@ -48,4 +48,10 @@ public class HallController {
     public Object deleteHall(Long hallId) {
         return hallService.deleteByPrimaryKey(hallId) > 0;
     }
+    
+    @ResponseBody
+    @GetMapping("list")
+    public Object hallList(HallSelectParam param) {
+        return hallService.selectByParam(param);
+    }
 }

@@ -699,4 +699,14 @@
 
         </where>
     </select>
+    <select id="selectByCinemaType" resultMap="BaseResultMap">
+        SELECT
+        a.movie_id,b.movie_cn_name
+        FROM
+        cinema_movie_releation a
+        LEFT JOIN movie b on a.movie_id = b.movie_id
+        WHERE
+        b.movie_state = 1
+        and a.cinema_type=#{cinemaTypeId}
+    </select>
 </mapper>

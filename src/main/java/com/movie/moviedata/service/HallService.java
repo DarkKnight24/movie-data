@@ -3,6 +3,7 @@ package com.movie.moviedata.service;
 import java.util.List;
 
 import com.movie.base.utils.Page;
+import com.movie.moviedata.dto.HallDto;
 import com.movie.moviedata.entity.Hall;
 import com.movie.moviedata.param.HallSelectParam;
 
@@ -31,4 +32,6 @@ public interface HallService {
     int batchInsert(List<Hall> list);
     
     Page selectByParam(HallSelectParam param, Page page);
+    
+    List<HallDto> selectByParam(HallSelectParam param);
 }
