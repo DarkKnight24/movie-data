@@ -304,8 +304,23 @@
         <include refid="Base_Dto_List"></include>
         FROM cinema a
         LEFT JOIN cinema_type b ON a.cinema_type = b.cinema_id
+        <if test="movieId != null and movieId !=0">
+            LEFT JOIN cinema_movie_releation c ON b.cinema_id = c.cinema_type
+        </if>
         WHERE
         a.delete_mark=false
+        <if test="areaId != null and areaId != 0">
+            AND a.belong_area = #{areaId}
+        </if>
+        <if test="cinemaTypeId != null and cinemaTypeId !=0">
+            AND a.cinema_type=#{cinemaTypeId}
+        </if>
+        <if test="movieId != null and movieId!=0">
+            AND c.movie_id = #{movieId}
+        </if>
+        <if test="startTime != null and startTime != ''">
+
+        </if>
     </select>
     <select id="selectCinemaAll" resultMap="BaseResultMap">
         SELECT
