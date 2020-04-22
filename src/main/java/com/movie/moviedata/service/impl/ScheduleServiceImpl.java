@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageHelper;
@@ -12,8 +13,10 @@ import com.movie.base.utils.BeanUtil;
 import com.movie.base.utils.Page;
 import com.movie.moviedata.dao.ScheduleMapper;
 import com.movie.moviedata.dto.ScheduleDto;
+import com.movie.moviedata.entity.Hall;
 import com.movie.moviedata.entity.Schedule;
 import com.movie.moviedata.param.SelectScheduleParam;
+import com.movie.moviedata.service.HallService;
 import com.movie.moviedata.service.ScheduleService;
 
 @Service
@@ -22,6 +25,9 @@ public class ScheduleServiceImpl implements ScheduleService {
     @Resource
     private ScheduleMapper scheduleMapper;
     
+    @Autowired
+    private HallService hallService;
+    
     @Override
     public int deleteByPrimaryKey(Long scheduleId) {
         return scheduleMapper.deleteByPrimaryKey(scheduleId);
@@ -29,6 +35,8 @@ public class ScheduleServiceImpl implements ScheduleService {
     
     @Override
     public int insert(Schedule record) {
+        Hall hall = hallService.selectByPrimaryKey(record.getHallId());
+        record.setScheduleRemain(hall.getHallCapacity());
         return scheduleMapper.insert(record);
     }
     
