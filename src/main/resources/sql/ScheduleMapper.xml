@@ -349,8 +349,9 @@
     </insert>
     <select id="selectSchedule" resultType="com.movie.moviedata.dto.ScheduleDto">
         SELECT
-        a.id scheduleId,b.movie_cn_name movieName,c.hall_name hallName,d.cinema_name cinemaName,a.schedule_price price,a.schedule_startTime startTime,a.schedule_remain remainingSeat
-        FROM schedule a LEFT JOIN movie b ON a.movie_id = b.movie_id
+        a.schedule_id scheduleId,b.movie_cn_name movieName,c.hall_name hallName,d.cinema_name cinemaName,a.schedule_price price,a.schedule_startTime startTime,a.schedule_remain remainingSeat
+        FROM schedule a
+        LEFT JOIN movie b ON a.movie_id = b.movie_id
         LEFT JOIN hall c ON a.hall_id = c.id
         LEFT JOIN cinema d ON c.cinema_id = d.id
         WHERE
