@@ -35,8 +35,6 @@ public class ScheduleServiceImpl implements ScheduleService {
     
     @Override
     public int insert(Schedule record) {
-        Hall hall = hallService.selectByPrimaryKey(record.getHallId());
-        record.setScheduleRemain(hall.getHallCapacity());
         return scheduleMapper.insert(record);
     }
     
@@ -52,6 +50,8 @@ public class ScheduleServiceImpl implements ScheduleService {
     
     @Override
     public int insertSelective(Schedule record) {
+        Hall hall = hallService.selectByPrimaryKey(record.getHallId());
+        record.setScheduleRemain(hall.getHallCapacity());
         return scheduleMapper.insertSelective(record);
     }
     
