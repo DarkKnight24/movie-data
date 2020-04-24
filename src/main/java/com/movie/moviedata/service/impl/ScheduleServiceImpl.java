@@ -93,4 +93,10 @@ public class ScheduleServiceImpl implements ScheduleService {
         BeanUtil.copyProperties(new PageInfo(scheduleDtos), page);
         return page;
     }
+    
+    @Override
+    public Object listScheduleByCinemaId(Long cinemaId) {
+        
+        return scheduleMapper.listScheduleByCinemaId(cinemaId);
+    }
 }
