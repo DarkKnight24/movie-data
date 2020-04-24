@@ -2,7 +2,10 @@ package com.movie.moviedata.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.movie.base.utils.Page;
 import com.movie.moviedata.entity.Schedule;
@@ -29,12 +32,6 @@ public class ScheduleController {
     @GetMapping("all")
     public Object selectSchedule(SelectScheduleParam param, Page page) {
         return scheduleService.selectSchedule(param, page);
-    }
-    
-    @ResponseBody
-    @GetMapping("list/{cinemaId}")
-    public Object listScheduleByCinemaId(@PathVariable Long cinemaId) {
-        return scheduleService.listScheduleByCinemaId(cinemaId);
     }
     
 }
