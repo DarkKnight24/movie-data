@@ -56,7 +56,7 @@ public class ScheduleServiceImpl implements ScheduleService {
     }
     
     @Override
-    public Schedule selectByPrimaryKey(Long scheduleId) {
+    public ScheduleDto selectByPrimaryKey(Long scheduleId) {
         return scheduleMapper.selectByPrimaryKey(scheduleId);
     }
     

@@ -2,10 +2,7 @@ package com.movie.moviedata.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import com.movie.base.utils.Page;
 import com.movie.moviedata.entity.Schedule;
@@ -16,7 +13,7 @@ import io.swagger.annotations.Api;
 
 @Controller
 @RequestMapping("movie/schedule")
-@Api("场次服务接口")
+@Api(tags = "场次服务接口")
 public class ScheduleController {
     
     @Autowired
@@ -34,4 +31,22 @@ public class ScheduleController {
         return scheduleService.selectSchedule(param, page);
     }
     
+    @ResponseBody
+    @GetMapping("detail/{scheduleId}")
+    public Object detail(@PathVariable Long scheduleId) {
+        return scheduleService.selectByPrimaryKey(scheduleId);
+    }
+    
+    @ResponseBody
+    @PostMapping("delete")
+    public Object delete(Schedule schedule) {
+        schedule.setScheduleState(0);
+        return scheduleService.updateByPrimaryKeySelective(schedule) > 0;
+    }
+    
+    @ResponseBody
+    @PostMapping("update")
+    public Object update(Schedule schedule) {
+        return scheduleService.updateByPrimaryKeySelective(schedule) > 0;
+    }
 }
