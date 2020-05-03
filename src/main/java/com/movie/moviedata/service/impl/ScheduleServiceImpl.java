@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import com.movie.moviedata.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +28,9 @@ public class ScheduleServiceImpl implements ScheduleService {
     
     @Autowired
     private HallService hallService;
+
+    @Autowired
+    private MovieService movieService;
     
     @Override
     public int deleteByPrimaryKey(Long scheduleId) {
@@ -57,7 +61,9 @@ public class ScheduleServiceImpl implements ScheduleService {
     
     @Override
     public ScheduleDto selectByPrimaryKey(Long scheduleId) {
-        return scheduleMapper.selectByPrimaryKey(scheduleId);
+        ScheduleDto scheduleDto = scheduleMapper.selectByPrimaryKey(scheduleId);
+        scheduleDto.setMovieDto(movieService.selectByPrimaryKey(scheduleDto.getMovieId()));
+        return scheduleDto;
     }
     
     @Override

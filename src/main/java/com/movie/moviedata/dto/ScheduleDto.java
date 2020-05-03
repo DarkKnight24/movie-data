@@ -4,13 +4,16 @@ import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import com.movie.moviedata.entity.Movie;
 import lombok.Data;
 
 @Data
 public class ScheduleDto {
     
     private Long scheduleId;
-    
+
+    private Long movieId;
+
     private String movieName;
     
     private String hallName;
@@ -23,4 +26,6 @@ public class ScheduleDto {
     private double price;
     
     private int remainingSeat;
+
+    private MovieDetailDto movieDto;
 }
