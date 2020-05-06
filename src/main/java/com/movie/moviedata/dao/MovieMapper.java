@@ -5,7 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
-import com.movie.moviedata.dto.MovieDto;
+import com.movie.base.dto.MovieDto;
 import com.movie.moviedata.entity.Movie;
 import com.movie.moviedata.param.MovieSelectParam;
 

@@ -2,8 +2,8 @@ package com.movie.moviedata.service;
 
 import java.util.List;
 
+import com.movie.base.dto.ScheduleDto;
 import com.movie.base.utils.Page;
-import com.movie.moviedata.dto.ScheduleDto;
 import com.movie.moviedata.entity.Schedule;
 import com.movie.moviedata.param.SelectScheduleParam;
 

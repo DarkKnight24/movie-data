@@ -2,9 +2,9 @@ package com.movie.moviedata.service;
 
 import java.util.List;
 
+import com.movie.base.dto.MovieDetailDto;
+import com.movie.base.dto.MovieDto;
 import com.movie.base.utils.Page;
-import com.movie.moviedata.dto.MovieDetailDto;
-import com.movie.moviedata.dto.MovieDto;
 import com.movie.moviedata.entity.Movie;
 import com.movie.moviedata.param.MovieSelectParam;
 

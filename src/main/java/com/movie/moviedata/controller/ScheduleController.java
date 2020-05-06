@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import com.movie.base.interfaces.ScheduleClient;
 import com.movie.base.utils.Page;
 import com.movie.moviedata.entity.Schedule;
 import com.movie.moviedata.param.SelectScheduleParam;
@@ -14,7 +15,7 @@ import io.swagger.annotations.Api;
 @Controller
 @RequestMapping("movie/schedule")
 @Api(tags = "场次服务接口")
-public class ScheduleController {
+public class ScheduleController implements ScheduleClient {
     
     @Autowired
     private ScheduleService scheduleService;
@@ -31,6 +32,7 @@ public class ScheduleController {
         return scheduleService.selectSchedule(param, page);
     }
     
+    @Override
     @ResponseBody
     @GetMapping("detail/{scheduleId}")
     public Object detail(@PathVariable Long scheduleId) {

@@ -4,20 +4,20 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import com.movie.moviedata.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.movie.base.dto.ScheduleDto;
 import com.movie.base.utils.BeanUtil;
 import com.movie.base.utils.Page;
 import com.movie.moviedata.dao.ScheduleMapper;
-import com.movie.moviedata.dto.ScheduleDto;
 import com.movie.moviedata.entity.Hall;
 import com.movie.moviedata.entity.Schedule;
 import com.movie.moviedata.param.SelectScheduleParam;
 import com.movie.moviedata.service.HallService;
+import com.movie.moviedata.service.MovieService;
 import com.movie.moviedata.service.ScheduleService;
 
 @Service
@@ -28,7 +28,7 @@ public class ScheduleServiceImpl implements ScheduleService {
     
     @Autowired
     private HallService hallService;
-
+    
     @Autowired
     private MovieService movieService;
     

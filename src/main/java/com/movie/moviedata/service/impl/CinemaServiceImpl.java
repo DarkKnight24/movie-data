@@ -9,13 +9,13 @@ import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.movie.base.dto.MovieDto;
 import com.movie.base.utils.BeanUtil;
 import com.movie.base.utils.Page;
 import com.movie.file.utils.Utils;
 import com.movie.moviedata.dao.CinemaMapper;
 import com.movie.moviedata.dto.CinemaDetailDto;
 import com.movie.moviedata.dto.CinemaDto;
-import com.movie.moviedata.dto.MovieDto;
 import com.movie.moviedata.entity.Area;
 import com.movie.moviedata.entity.Cinema;
 import com.movie.moviedata.param.CinemaSelectParam;
