@@ -4,6 +4,7 @@ import com.movie.base.utils.Page;
 import com.movie.moviedata.entity.Comment;
 import com.movie.moviedata.param.CommentSelectParam;
 import com.movie.moviedata.service.impl.CommentService;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @RequestMapping("movie/comment")
 @Controller
+@Api(tags = "评论服务")
 public class CommentController {
     @Autowired
     private CommentService service;
