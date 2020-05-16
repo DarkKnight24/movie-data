@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.movie.moviedata.dao.CommentMapper">
+    <resultMap id="BaseResultMap" type="com.movie.moviedata.entity.Comment">
+        <!--@mbg.generated-->
+        <id column="comment_id" jdbcType="BIGINT" property="commentId"/>
+        <result column="user_id" jdbcType="BIGINT" property="userId"/>
+        <result column="comment_content" jdbcType="LONGVARCHAR" property="commentContent"/>
+        <result column="movie_id" jdbcType="BIGINT" property="movieId"/>
+        <result column="comment_time" jdbcType="TIMESTAMP" property="commentTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        comment_id, user_id, comment_content, movie_id, comment_time
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from comment
+        where comment_id = #{commentId,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        <!--@mbg.generated-->
+        delete from comment
+        where comment_id = #{commentId,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" keyColumn="comment_id" keyProperty="commentId"
+            parameterType="com.movie.moviedata.entity.Comment" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into comment (user_id, comment_content, movie_id,
+        comment_time)
+        values (#{userId,jdbcType=BIGINT}, #{commentContent,jdbcType=LONGVARCHAR}, #{movieId,jdbcType=BIGINT},
+        #{commentTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" keyColumn="comment_id" keyProperty="commentId"
+            parameterType="com.movie.moviedata.entity.Comment" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into comment
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="commentContent != null">
+                comment_content,
+            </if>
+            <if test="movieId != null">
+                movie_id,
+            </if>
+            <if test="commentTime != null">
+                comment_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                #{userId,jdbcType=BIGINT},
+            </if>
+            <if test="commentContent != null">
+                #{commentContent,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="movieId != null">
+                #{movieId,jdbcType=BIGINT},
+            </if>
+            <if test="commentTime != null">
+                #{commentTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.movie.moviedata.entity.Comment">
+        <!--@mbg.generated-->
+        update comment
+        <set>
+            <if test="userId != null">
+                user_id = #{userId,jdbcType=BIGINT},
+            </if>
+            <if test="commentContent != null">
+                comment_content = #{commentContent,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="movieId != null">
+                movie_id = #{movieId,jdbcType=BIGINT},
+            </if>
+            <if test="commentTime != null">
+                comment_time = #{commentTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where comment_id = #{commentId,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.movie.moviedata.entity.Comment">
+        <!--@mbg.generated-->
+        update comment
+        set user_id = #{userId,jdbcType=BIGINT},
+        comment_content = #{commentContent,jdbcType=LONGVARCHAR},
+        movie_id = #{movieId,jdbcType=BIGINT},
+        comment_time = #{commentTime,jdbcType=TIMESTAMP}
+        where comment_id = #{commentId,jdbcType=BIGINT}
+    </update>
+    <update id="updateBatch" parameterType="java.util.List">
+        <!--@mbg.generated-->
+        update comment
+        <trim prefix="set" suffixOverrides=",">
+            <trim prefix="user_id = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when comment_id = #{item.commentId,jdbcType=BIGINT} then #{item.userId,jdbcType=BIGINT}
+                </foreach>
+            </trim>
+            <trim prefix="comment_content = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when comment_id = #{item.commentId,jdbcType=BIGINT} then #{item.commentContent,jdbcType=LONGVARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="movie_id = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when comment_id = #{item.commentId,jdbcType=BIGINT} then #{item.movieId,jdbcType=BIGINT}
+                </foreach>
+            </trim>
+            <trim prefix="comment_time = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when comment_id = #{item.commentId,jdbcType=BIGINT} then #{item.commentTime,jdbcType=TIMESTAMP}
+                </foreach>
+            </trim>
+        </trim>
+        where comment_id in
+        <foreach close=")" collection="list" item="item" open="(" separator=", ">
+            #{item.commentId,jdbcType=BIGINT}
+        </foreach>
+    </update>
+    <insert id="batchInsert" keyColumn="comment_id" keyProperty="commentId" parameterType="map" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into comment
+        (user_id, comment_content, movie_id, comment_time)
+        values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.userId,jdbcType=BIGINT}, #{item.commentContent,jdbcType=LONGVARCHAR},
+            #{item.movieId,jdbcType=BIGINT},
+            #{item.commentTime,jdbcType=TIMESTAMP})
+        </foreach>
+    </insert>
+    <insert id="insertOrUpdate" keyColumn="comment_id" keyProperty="commentId"
+            parameterType="com.movie.moviedata.entity.Comment" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into comment
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="commentId != null">
+                comment_id,
+            </if>
+            user_id,
+            comment_content,
+            movie_id,
+            comment_time,
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="commentId != null">
+                #{commentId,jdbcType=BIGINT},
+            </if>
+            #{userId,jdbcType=BIGINT},
+            #{commentContent,jdbcType=LONGVARCHAR},
+            #{movieId,jdbcType=BIGINT},
+            #{commentTime,jdbcType=TIMESTAMP},
+        </trim>
+        on duplicate key update
+        <trim suffixOverrides=",">
+            <if test="commentId != null">
+                comment_id = #{commentId,jdbcType=BIGINT},
+            </if>
+            user_id = #{userId,jdbcType=BIGINT},
+            comment_content = #{commentContent,jdbcType=LONGVARCHAR},
+            movie_id = #{movieId,jdbcType=BIGINT},
+            comment_time = #{commentTime,jdbcType=TIMESTAMP},
+        </trim>
+    </insert>
+    <insert id="insertOrUpdateSelective" keyColumn="comment_id" keyProperty="commentId"
+            parameterType="com.movie.moviedata.entity.Comment" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into comment
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="commentId != null">
+                comment_id,
+            </if>
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="commentContent != null">
+                comment_content,
+            </if>
+            <if test="movieId != null">
+                movie_id,
+            </if>
+            <if test="commentTime != null">
+                comment_time,
+            </if>
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="commentId != null">
+                #{commentId,jdbcType=BIGINT},
+            </if>
+            <if test="userId != null">
+                #{userId,jdbcType=BIGINT},
+            </if>
+            <if test="commentContent != null">
+                #{commentContent,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="movieId != null">
+                #{movieId,jdbcType=BIGINT},
+            </if>
+            <if test="commentTime != null">
+                #{commentTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+        on duplicate key update
+        <trim suffixOverrides=",">
+            <if test="commentId != null">
+                comment_id = #{commentId,jdbcType=BIGINT},
+            </if>
+            <if test="userId != null">
+                user_id = #{userId,jdbcType=BIGINT},
+            </if>
+            <if test="commentContent != null">
+                comment_content = #{commentContent,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="movieId != null">
+                movie_id = #{movieId,jdbcType=BIGINT},
+            </if>
+            <if test="commentTime != null">
+                comment_time = #{commentTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <select id="selectComment" resultType="com.movie.moviedata.dto.CommentDto">
+        SELECT
+        a.comment_id commentId,
+        a.movie_id movieId,
+        a.user_id userId,
+        a.comment_content commentContent,
+        a.comment_time commentTime,
+        b.user_name userName,
+        c.movie_cn_name movieCnName
+        FROM comment a
+        LEFT JOIN user b ON a.user_id = b.user_id
+        LEFT JOIN movie c ON a.movie_id = c.movie_id
+        <where>
+            <if test="movieId != null">
+                a.movie_id = #{movieId}
+            </if>
+        </where>
+    </select>
+</mapper>
