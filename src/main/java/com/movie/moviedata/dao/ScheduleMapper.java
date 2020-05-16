@@ -5,7 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
-import com.movie.moviedata.dto.ScheduleDto;
+import com.movie.base.dto.ScheduleDto;
 import com.movie.moviedata.entity.Schedule;
 import com.movie.moviedata.param.SelectScheduleParam;
 

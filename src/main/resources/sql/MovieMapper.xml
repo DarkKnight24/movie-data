@@ -674,7 +674,7 @@
         FROM movie
         WHERE movie_state = 1
     </select>
-    <select id="selectByParam" resultType="com.movie.moviedata.dto.MovieDto">
+    <select id="selectByParam" resultType="com.movie.base.dto.MovieDto">
         SELECT
         <include refid="BaseDto"/>
         FROM movie a
